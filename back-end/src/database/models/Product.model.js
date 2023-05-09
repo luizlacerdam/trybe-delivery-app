@@ -15,6 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   { timestamps: false, tableName: 'products', underscored: true },
     );
-    
+  //   Product.associate = (models) => {
+  //     Product.belongsToMany(models.Sale, { foreignKey: 'productId', as: 'products' });
+  // };
     return Product;
   };
