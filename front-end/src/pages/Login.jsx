@@ -7,7 +7,7 @@ function Login() {
       <form>
         <label htmlFor="input__email">
           <input
-            data-testid="email-input"
+            data-testid="common_login__input-email"
             type="text"
             name="email"
             id="input__email"
@@ -17,7 +17,7 @@ function Login() {
         </label>
         <label htmlFor="input__password">
           <input
-            data-testid="password-input"
+            data-testid="common_login__input-password"
             type="password"
             name="password"
             id="input__password"
@@ -27,12 +27,23 @@ function Login() {
 
         </label>
         <button
-          data-testid="login-submit-btn"
+          data-testid="common_login__button-login"
           type="button"
         >
-          Sign In
+          Login
+        </button>
+        <button
+          data-testid="common_login__button-register"
+          type="button"
+        >
+          Ainda não tenho conta
         </button>
       </form>
+      <div
+        data-testid="common_login__element-invalid-email"
+      >
+        Elemento oculto (Mensagens de error)
+      </div>
     </div>
   );
 }
