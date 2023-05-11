@@ -5,12 +5,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
-  // const history = useHistory();
-  const dispatch = useDispatch();
-
   const handleClick = () => {
-    dispatch(saveUser({ email, password }));
-    saveEmailLocalStorage({ email });
+    // saveEmailLocalStorage({ email });
   };
 
   useEffect(() => {
