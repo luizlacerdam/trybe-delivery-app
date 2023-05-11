@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    const validateEmail = () => {
+      const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+      return regexEmail.test(email);
+    };
+
+    const validatePassword = () => {
+      const minCharacters = 6;
+      return password.length >= minCharacters;
+    };
+    if (validateEmail() && validatePassword()) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [email, password]);
+
   return (
     <div>
-
       <form>
         <label htmlFor="input__email">
           <input
@@ -12,7 +32,7 @@ function Login() {
             name="email"
             id="input__email"
             placeholder="Email"
-
+            onChange={ ({ target }) => setEmail(target.value) }
           />
         </label>
         <label htmlFor="input__password">
@@ -22,13 +42,14 @@ function Login() {
             name="password"
             id="input__password"
             placeholder="Password"
-
+            onChange={ ({ target }) => setPassword(target.value) }
           />
-
         </label>
         <button
           data-testid="common_login__button-login"
           type="button"
+          onClick={ () => {} }
+          disabled={ isDisabled }
         >
           Login
         </button>
