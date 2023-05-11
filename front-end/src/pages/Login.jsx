@@ -5,6 +5,14 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
+  // const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(saveUser({ email, password }));
+    saveEmailLocalStorage({ email });
+  };
+
   useEffect(() => {
     const validateEmail = () => {
       const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -48,8 +56,8 @@ function Login() {
         <button
           data-testid="common_login__button-login"
           type="button"
-          onClick={ () => {} }
           disabled={ isDisabled }
+          onClick={ handleClick }
         >
           Login
         </button>

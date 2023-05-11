@@ -1,4 +1,4 @@
-const User = require('../database/models/User.model');
+const { User } = require('../database/models');
 
 const getByEmail = (email) => User.findOne({ where: { email } });
 
