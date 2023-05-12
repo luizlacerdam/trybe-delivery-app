@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { requestLogin } from '../../../services/requests';
 
 function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-
-  const handleClick = () => {
-    // saveEmailLocalStorage({ email });
-  };
 
   useEffect(() => {
     const validateEmail = () => {
@@ -25,6 +22,15 @@ function Form() {
       setIsDisabled(true);
     }
   }, [email, password]);
+
+  const login = async () => {
+    const post = await requestLogin('/login', { email, password });
+    console.log(post);
+  };
+
+  const handleClick = async () => {
+    login();
+  };
 
   return (
     <form>

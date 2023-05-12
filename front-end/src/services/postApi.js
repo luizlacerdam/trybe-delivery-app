@@ -1,6 +1,6 @@
 import fetchAPI from './fetchApi';
 
-export default async function postApi(path, callback, body) {
+export default async function postApi(path, body) {
   const options = {
     method: 'POST',
     headers: {
@@ -8,5 +8,6 @@ export default async function postApi(path, callback, body) {
     },
     body: JSON.stringify(body),
   };
-  await fetchAPI(path, callback, options);
+  const data = await fetchAPI(path, options);
+  return data;
 }
