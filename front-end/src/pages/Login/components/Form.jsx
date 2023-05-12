@@ -24,8 +24,7 @@ function Form() {
   }, [email, password]);
 
   const login = async () => {
-    const post = await requestLogin('/login', { email, password });
-    console.log(post);
+    await requestLogin('/login', { email, password });
   };
 
   const handleClick = async () => {
