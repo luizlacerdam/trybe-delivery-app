@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function RegisterForms() {
+function RegisterForms({ setResError }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -75,5 +75,9 @@ function RegisterForms() {
     </form>
   );
 }
+
+RegisterForms.propTypes = ({
+  setResError: PropTypes.any,
+}).isRequired;
 
 export default RegisterForms;

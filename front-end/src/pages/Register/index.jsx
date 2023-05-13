@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RegisterForms from './components/RegisterForms';
 
 function Register() {
+  const [resError, setResError] = useState();
   return (
     <div>
 
-      <RegisterForms />
+      <RegisterForms setResError={ setResError } />
       <div
         data-testid="common_register__element-invalid_register"
       >
-        Elemento oculto (Mensagens de error)
+        {!resError ? '' : resError.response.statusText}
       </div>
     </div>
   );

@@ -32,7 +32,6 @@ function Form({ setResError }) {
       const response = await requestLogin('/login', { email, password });
       userCont.setToken(response);
     } catch (error) {
-      console.log(error);
       setResError(error);
     }
   };
