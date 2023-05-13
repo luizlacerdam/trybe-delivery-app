@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestLogin } from '../../../services/requests';
 import userContext from '../../../context/user/userContext';
 
@@ -7,6 +8,7 @@ function Form() {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
   const userCont = useContext(userContext);
+  const history = useHistory();
   useEffect(() => {
     const validateEmail = () => {
       const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -66,6 +68,8 @@ function Form() {
       <button
         data-testid="common_login__button-register"
         type="button"
+        onClick={ () => history.push('/register') }
+
       >
         Ainda não tenho conta
       </button>
