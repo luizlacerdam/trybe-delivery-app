@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const { loginRouter, userRouter } = require('../routers');
-const { default: errorMiddleware } = require('../middlewares/errorMiddleware');
+const { errorMiddleware } = require('../middlewares/errorMiddleware');
 
 const app = express();
 app.use(express.json());

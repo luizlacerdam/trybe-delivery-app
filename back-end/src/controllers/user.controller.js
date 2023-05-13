@@ -4,7 +4,7 @@ const { hashMd5Encrypt } = require('../utils/md5');
 
 const isBodyValid = (name, email, password) => name && email && password;
 
-const create = async (req, res) => {
+const create = async (req, res, next) => {
     try {
         const { name, email, password } = req.body;
         
@@ -25,7 +25,7 @@ const create = async (req, res) => {
     
     res.status(200).json({ createNewUser });
     } catch (err) {
-        return res.status(500).json({ message: 'Erro interno', error: err.message });
+        next(err);
     }
 };
 

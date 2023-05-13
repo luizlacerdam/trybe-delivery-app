@@ -5,7 +5,7 @@ const { hashMd5Compare } = require('../utils/md5');
 
 const isBodyValid = (email, password) => email && password;
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -27,7 +27,7 @@ const login = async (req, res) => {
 
     res.status(200).json({ token });
   } catch (err) {
-    return res.status(500).json({ message: 'Erro interno', error: err.message });
+    next(err);
   }
 };
 
