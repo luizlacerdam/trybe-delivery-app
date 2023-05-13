@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Form from './components/Form';
 import userContext from '../../context/user/userContext';
@@ -11,6 +11,7 @@ import userContext from '../../context/user/userContext';
 
 function Login() {
   const { token } = useContext(userContext);
+  const [resError, setResError] = useState();
   const history = useHistory();
   // useEffect(() => {
   //   history.push(REDIRECT_PATHS[role]);
@@ -22,11 +23,11 @@ function Login() {
 
   return (
     <div>
-      <Form />
+      <Form setResError={ setResError } />
       <div
         data-testid="common_login__element-invalid-email"
       >
-        Elemento oculto (Mensagens de error)
+        {!resError ? '' : resError.response.statusText}
       </div>
     </div>
   );

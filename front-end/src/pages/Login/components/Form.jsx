@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestLogin } from '../../../services/requests';
 import userContext from '../../../context/user/userContext';
 
-function Form() {
+function Form({ setResError }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -27,8 +28,13 @@ function Form() {
   }, [email, password]);
 
   const login = async () => {
-    const response = await requestLogin('/login', { email, password });
-    userCont.setToken(response.token);
+    try {
+      const response = await requestLogin('/login', { email, password });
+      userCont.setToken(response);
+    } catch (error) {
+      console.log(error);
+      setResError(error);
+    }
   };
 
   const handleClick = async () => {
@@ -76,5 +82,8 @@ function Form() {
     </form>
   );
 }
+Form.propTypes = ({
+  setResError: PropTypes.any,
+}).isRequired;
 
 export default Form;
