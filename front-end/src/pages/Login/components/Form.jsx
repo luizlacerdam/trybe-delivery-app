@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { requestLogin } from '../../../services/requests';
+import userContext from '../../../context/user/userContext';
 
 function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-
+  const userCont = useContext(userContext);
   useEffect(() => {
     const validateEmail = () => {
       const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -24,7 +25,8 @@ function Form() {
   }, [email, password]);
 
   const login = async () => {
-    await requestLogin('/login', { email, password });
+    const response = await requestLogin('/login', { email, password });
+    userCont.setToken(response.token);
   };
 
   const handleClick = async () => {
