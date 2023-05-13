@@ -1,6 +1,6 @@
 const { UserService } = require('../services');
 const { hashMd5Encrypt } = require('../utils/md5');
-const tokenGenerator = require('../utils/tokenGenerator');
+// const tokenGenerator = require('../utils/tokenGenerator');
 
 const isBodyValid = (name, email, password) => name && email && password;
 
@@ -29,6 +29,6 @@ const create = async (req, res) => {
     }
 };
 
-module.export = { 
+module.exports = { 
     create,
  };
