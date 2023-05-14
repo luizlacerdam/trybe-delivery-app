@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import PropTypes from 'prop-types';
 import { requestPost } from '../../../services/requests';
 
-function RegisterForms() {
+function RegisterForms({ setResError }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-
+  const history = useHistory();
   useEffect(() => {
     const validateEmail = () => {
       const regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -38,12 +39,13 @@ function RegisterForms() {
         role: 'costumer' });
       console.log(response);
     } catch (error) {
-      console.log(error);
+      setResError(error);
     }
   };
 
   const handleClick = async () => {
     createUser();
+    history.push('/customer/products');
   };
 
   return (
@@ -93,8 +95,8 @@ function RegisterForms() {
   );
 }
 
-// RegisterForms.propTypes = ({
-//   setResError: PropTypes.any,
-// }).isRequired;
+RegisterForms.propTypes = ({
+  setResError: PropTypes.any,
+}).isRequired;
 
 export default RegisterForms;
