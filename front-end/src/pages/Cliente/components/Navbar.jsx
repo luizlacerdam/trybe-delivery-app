@@ -1,37 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Navbar({ username }) {
+export default function Navbar({ username, role }) {
   return (
-    <div>
+    <header>
       <div
-        data-testid="customer_products__element-navbar-link-products"
+        data-testid={ `${role}_products__element-navbar-link-products` }
       >
         PRODUTOS
 
       </div>
       <div
-        data-testid="customer_products__element-navbar-link-orders"
+        data-testid={ `${role}_products__element-navbar-link-orders` }
       >
         MEUS PEDIDOS
 
       </div>
       <div
-        data-testid="customer_products__element-navbar-user-full-name"
+        data-testid={ `${role}_products__element-navbar-user-full-name` }
       >
         {username}
 
       </div>
       <div
-        data-testid="customer_products__element-navbar-link-logout"
+        data-testid={ `${role}_products__element-navbar-link-logout` }
       >
         Sair
 
       </div>
-    </div>
+    </header>
   );
 }
 
 Navbar.propTypes = ({
   username: PropTypes.any,
+  role: PropTypes.any,
 }).isRequired;
