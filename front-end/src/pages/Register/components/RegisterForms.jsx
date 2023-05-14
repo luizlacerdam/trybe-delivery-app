@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
+import { requestPost } from '../../../services/requests';
 
-function RegisterForms({ setResError }) {
+function RegisterForms() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-  const history = useHistory();
 
   useEffect(() => {
     const validateEmail = () => {
@@ -27,7 +27,24 @@ function RegisterForms({ setResError }) {
     } else {
       setIsDisabled(true);
     }
-  }, [email, password]);
+  }, [email, password, name]);
+
+  const createUser = async () => {
+    try {
+      const response = await requestPost('/register', {
+        name,
+        email,
+        password,
+        role: 'costumer' });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClick = async () => {
+    createUser();
+  };
 
   return (
     <form>
@@ -67,7 +84,7 @@ function RegisterForms({ setResError }) {
       <button
         data-testid="common_register__button-register"
         type="button"
-        onClick={ () => history.push('/register') }
+        onClick={ handleClick }
         disabled={ isDisabled }
       >
         CADASTRAR
@@ -76,8 +93,8 @@ function RegisterForms({ setResError }) {
   );
 }
 
-RegisterForms.propTypes = ({
-  setResError: PropTypes.any,
-}).isRequired;
+// RegisterForms.propTypes = ({
+//   setResError: PropTypes.any,
+// }).isRequired;
 
 export default RegisterForms;
