@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import QtyButton from './QtyButton';
 
-export default function Card() {
+export default function Card({ id, role, imgUrl, price, title }) {
   return (
     <div>
       <div
@@ -18,6 +20,15 @@ export default function Card() {
       >
         {title}
       </div>
+      <QtyButton id={ id } role={ role } />
     </div>
   );
 }
+
+Card.propTypes = ({
+  id: PropTypes.any,
+  role: PropTypes.any,
+  imgUrl: PropTypes.any,
+  price: PropTypes.any,
+  title: PropTypes.any,
+}).isRequired;
