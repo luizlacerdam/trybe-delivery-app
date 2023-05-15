@@ -6,6 +6,7 @@ export default function QtyButton({ id, role }) {
 
   function handleQty(event) {
     const targetId = event.target.id;
+    console.log(event.target);
     if (targetId === 'add-qty') {
       setQty(qty + 1);
     } else {
@@ -28,6 +29,7 @@ export default function QtyButton({ id, role }) {
         data-testid={ `${role}_products__input-card-quantity-${id}` }
       />
       <button
+        id="add-qty"
         type="button"
         data-testid={ `${role}_products__button-card-add-item-${id}` }
         onClick={ handleQty }

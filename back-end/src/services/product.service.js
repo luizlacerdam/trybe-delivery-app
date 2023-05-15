@@ -2,12 +2,12 @@ const { Product } = require('../database/models');
 
 const create = async (newProduct) => Product.create(newProduct);
 
-const getAll = async () => Product.getAll();
+const findAll = async () => Product.findAll();
 
-const getById = async (id) => Product.getById(id);
+const findByPk = async (id) => Product.findByPk(id);
 
 module.exports = {
     create,
-    getAll,
-    getById,
+    findAll,
+    findByPk,
 };
