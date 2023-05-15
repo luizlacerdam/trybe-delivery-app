@@ -17,6 +17,25 @@ const create = async (req, res, next) => {
     }
 };
 
+const getAll = async (req, res, next) => {
+    try {
+       return await ProductService.getAll();
+    } catch (error) {
+        next(error);
+    }
+};
+
+const getById = async (req, res, next) => {
+    try {
+        const { id } = req.params; 
+        return ProductService.getById(id);
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     create,
+    getAll,
+    getById,
 };
