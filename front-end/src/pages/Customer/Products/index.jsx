@@ -20,14 +20,13 @@ export default function ProductPage() {
 
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar role="customer" username="Luiz Lacerda" />
       <section className="cards">
         { !loaded ? <Loading /> : (
-          products.allProducts.map(({ id, imgUrl, price, name }, index) => (
+          products.allProducts.map(({ id, urlImage, price, name }, index) => (
             <Card
               id={ id }
-              role="costumer"
-              imgUrl={ imgUrl }
+              urlImage={ urlImage }
               price={ price }
               title={ name }
               key={ index }

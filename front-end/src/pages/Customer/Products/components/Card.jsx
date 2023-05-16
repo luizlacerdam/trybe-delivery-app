@@ -2,32 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import QtyButton from './QtyButton';
 
-export default function Card({ id, role, imgUrl, price, title }) {
+export default function Card({ id, urlImage, price, title }) {
+  console.log(urlImage);
   return (
     <div>
       <div
-        data-testid={ `${role}_products__element-card-price-${id}` }
-      >
-        {price}
-      </div>
-      <div
-        data-testid={ `${role}_products__img-card-bg-image-${id}` }
-      >
-        <img src={ imgUrl } alt="" />
-      </div>
-      <div
-        data-testid={ `${role}_products__img-card-title-${id}` }
+        data-testid={ `customer_products__element-card-title-${id}` }
       >
         {title}
       </div>
-      <QtyButton id={ id } role={ role } />
+      <div
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
+        R$
+        {' '}
+        {price}
+      </div>
+      <div>
+        <img
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ urlImage }
+          alt={ title }
+        />
+      </div>
+
+      <QtyButton id={ id } />
     </div>
   );
 }
 
 Card.propTypes = ({
   id: PropTypes.any,
-  role: PropTypes.any,
   imgUrl: PropTypes.any,
   price: PropTypes.any,
   title: PropTypes.any,

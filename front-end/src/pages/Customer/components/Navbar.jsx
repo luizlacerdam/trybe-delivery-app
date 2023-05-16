@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 export default function Navbar({ username, role }) {
   return (
     <header>
-      <div
-        data-testid={ `${role}_products__element-navbar-link-products` }
-      >
+      <div>
         PRODUTOS
 
       </div>
+      <div
+        data-testid={ `${role}_products__element-navbar-link-products` }
+      />
+      11
       <div
         data-testid={ `${role}_products__element-navbar-link-orders` }
       >
