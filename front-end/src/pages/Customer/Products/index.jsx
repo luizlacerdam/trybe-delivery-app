@@ -2,32 +2,39 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Card from './components/Card';
 import { requestData } from '../../../services/requests';
+import Loading from '../../components/Loading';
 
 export default function ProductPage() {
-  const [products, setProducts] = useState([{}]);
+  const [products, setProducts] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const getProductsList = async () => {
       const data = await requestData('/customer/products');
       setProducts(data);
+      setLoaded(true);
     };
     getProductsList();
   }, []);
+  console.log(products);
+
   return (
-    <body>
+    <div>
       {/* <Navbar /> */}
       <section className="cards">
-        {products.map(({ id, role, imgUrl, price, title }, index) => (
-          <Card
-            id={ id }
-            role={ role }
-            imgUrl={ imgUrl }
-            price={ price }
-            title={ title }
-            key={ index }
-          />
-        ))}
+        { !loaded ? <Loading /> : (
+          products.allProducts.map(({ id, imgUrl, price, name }, index) => (
+            <Card
+              id={ id }
+              role="costumer"
+              imgUrl={ imgUrl }
+              price={ price }
+              title={ name }
+              key={ index }
+            />
+          ))
+        )}
       </section>
-    </body>
+    </div>
   );
 }
