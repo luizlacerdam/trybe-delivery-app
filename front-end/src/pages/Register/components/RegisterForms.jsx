@@ -36,16 +36,19 @@ function RegisterForms({ setResError }) {
         name,
         email,
         password,
-        role: 'costumer' });
-      console.log(response);
+      });
+      return response;
     } catch (error) {
       setResError(error);
     }
   };
 
   const handleClick = async () => {
-    createUser();
-    history.push('/customer/products');
+    const response = await createUser();
+    console.log(response);
+    if (response) {
+      history.push('/customer/products');
+    }
   };
 
   return (

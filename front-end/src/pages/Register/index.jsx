@@ -10,7 +10,7 @@ function Register() {
       <div
         data-testid="common_register__element-invalid_register"
       >
-        {!resError ? '' : resError.response.statusText}
+        {!resError ? '' : resError.response.data.message}
       </div>
     </div>
   );

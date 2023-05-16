@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
         const user = await UserService.getByEmail(email);
   
         if (user) {
-            return res.status(422).json({ message: 'Email já cadastrado.' }); 
+            return res.status(409).json({ message: 'Email já cadastrado.' }); 
         }
         
         const cryptoPass = hashMd5Encrypt(password); 
