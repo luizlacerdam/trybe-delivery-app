@@ -27,10 +27,17 @@ function Form({ setResError }) {
     }
   }, [email, password]);
 
+  const saveLocalStorage = (user, token) => {
+    localStorage.setItem('user', JSON.stringify({
+      ...user, token,
+    }));
+  };
+
   const login = async () => {
     try {
       const response = await requestLogin('/login', { email, password });
       userCont.setToken(response);
+      saveLocalStorage(response.user, response.token);
       return response;
     } catch (error) {
       setResError(error);

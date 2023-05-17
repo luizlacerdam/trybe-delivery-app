@@ -27,7 +27,13 @@ export default function Navbar({ username, role }) {
       <div
         data-testid={ `${role}_products__element-navbar-link-logout` }
       >
-        Sair
+        <button
+          type="button"
+          onClick={ () => localStorage.clear() }
+        >
+          Sair
+
+        </button>
 
       </div>
     </header>

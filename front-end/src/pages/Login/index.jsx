@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+// import { useHistory } from 'react-router-dom';
 import Form from './components/Form';
-import userContext from '../../context/user/userContext';
+// import userContext from '../../context/user/userContext';
 
 // const REDIRECT_PATHS = {
 //   customer: '/customer/products',
@@ -10,9 +10,9 @@ import userContext from '../../context/user/userContext';
 // };
 
 function Login() {
-  const { token } = useContext(userContext);
+  // const { token } = useContext(userContext);
   const [resError, setResError] = useState();
-  const history = useHistory();
+  // const history = useHistory();
   // useEffect(() => {
   //   history.push(REDIRECT_PATHS[role]);
   // }, [role, history]);
