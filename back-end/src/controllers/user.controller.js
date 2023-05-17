@@ -22,7 +22,7 @@ const create = async (req, res, next) => {
 
         const token = tokenGenerator({ data: { 
             name: createNewUser.name, email: createNewUser.email, role: createNewUser.role } });
-        res.status(201).json({ token, user: { name, email, role } });
+        return res.status(201).json({ token, user: { name, email, role } });
     } catch (err) {
         next(err);
     }

@@ -1,12 +1,11 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
- function getSecret() {
-  const secret = (fs.readFileSync('../../jwt.evaluation.key', 'utf-8')).trim();
-  return secret;
-}
-
-const secret = process.env.JWT_SECRET || getSecret();
+const secret = (fs.readFileSync('../back-end/jwt.evaluation.key', { encoding: 'utf-8' }));
+//  function getSecret() {
+  
+//   return secret;
+// }
 console.log(secret);
 
 const jwtConfig = {

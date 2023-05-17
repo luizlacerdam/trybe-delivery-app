@@ -5,7 +5,7 @@ const create = async (req, res, next) => {
         const product = req.body;
 
     const newProduct = await ProductService.create(product);
-    res.status(201).json({ newProduct });
+    return res.status(201).json({ newProduct });
     } catch (error) {
         next(error);
     }
