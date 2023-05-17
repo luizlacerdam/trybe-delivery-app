@@ -36,6 +36,7 @@ function RegisterForms({ setResError }) {
         name,
         email,
         password,
+        role: 'customer',
       });
       return response;
     } catch (error) {

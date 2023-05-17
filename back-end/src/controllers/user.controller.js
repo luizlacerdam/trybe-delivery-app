@@ -6,7 +6,7 @@ const isBodyValid = (name, email, password) => name && email && password;
 
 const create = async (req, res, next) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
         
         if (!isBodyValid(name, email, password)) {
             return res.status(400).json({ message: 'Some required fields are missing' });
@@ -21,12 +21,12 @@ const create = async (req, res, next) => {
         const cryptoPass = hashMd5Encrypt(password); 
         
         const createNewUser = await UserService.create({ 
-            name, email, password: cryptoPass });
+            name, email, password: cryptoPass, role });
 
         // token só é gerado após receber a confirmação na db que foi realmente criado um novo user
         
         const token = tokenGenerator({ data: { 
-            name: createNewUser.name, email: createNewUser.email } });
+            name: createNewUser.name, email: createNewUser.email, role: createNewUser.role } });
         res.status(201).json({ token });
     } catch (err) {
         next(err);

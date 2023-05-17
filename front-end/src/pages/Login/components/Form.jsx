@@ -38,9 +38,10 @@ function Form({ setResError }) {
 
   const handleClick = async () => {
     const response = await login();
-    if (response) {
-      history.push('/customer/products');
-    }
+    console.log(response);
+    // if (response) {
+    //   history.push('/customer/products');
+    // }
   };
 
   return (

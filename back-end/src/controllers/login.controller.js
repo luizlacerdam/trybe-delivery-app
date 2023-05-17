@@ -22,8 +22,8 @@ const login = async (req, res, next) => {
     if (!hashMd5Compare(password, user.password)) {
       return res.status(422).json({ message: 'Password is incorrect' });
     }
-    // const { id, name, role } = user;
-    const token = tokenGenerator({ data: user });
+    const { id, name, role } = user;
+    const token = tokenGenerator({ data: id, name, role });
 
     res.status(200).json({ token });
   } catch (err) {
