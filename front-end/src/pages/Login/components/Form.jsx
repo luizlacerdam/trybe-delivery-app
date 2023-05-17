@@ -31,6 +31,7 @@ function Form({ setResError }) {
     try {
       const response = await requestLogin('/login', { email, password });
       userCont.setToken(response);
+      return response;
     } catch (error) {
       setResError(error);
     }
@@ -39,9 +40,9 @@ function Form({ setResError }) {
   const handleClick = async () => {
     const response = await login();
     console.log(response);
-    // if (response) {
-    //   history.push('/customer/products');
-    // }
+    if (response) {
+      history.push('/customer/products');
+    }
   };
 
   return (

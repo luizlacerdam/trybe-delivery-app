@@ -17,9 +17,9 @@ function Login() {
   //   history.push(REDIRECT_PATHS[role]);
   // }, [role, history]);
 
-  useEffect(() => {
-    if (token) history.push('/customer/products');
-  });
+  // useEffect(() => {
+  //   if (token) history.push('/customer/products');
+  // });
 
   return (
     <div>
