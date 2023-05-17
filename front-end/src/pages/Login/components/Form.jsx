@@ -36,7 +36,7 @@ function Form({ setResError }) {
   const login = async () => {
     try {
       const response = await requestLogin('/login', { email, password });
-      userCont.setToken(response);
+      userCont.setUser(response);
       saveLocalStorage(response.user, response.token);
       return response;
     } catch (error) {
@@ -46,7 +46,7 @@ function Form({ setResError }) {
 
   const handleClick = async () => {
     const response = await login();
-    console.log(response);
+
     if (response) {
       history.push('/customer/products');
     }

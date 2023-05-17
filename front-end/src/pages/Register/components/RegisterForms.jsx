@@ -30,6 +30,12 @@ function RegisterForms({ setResError }) {
     }
   }, [email, password, name]);
 
+  const saveLocalStorage = (user, token) => {
+    localStorage.setItem('user', JSON.stringify({
+      ...user, token,
+    }));
+  };
+
   const createUser = async () => {
     try {
       const response = await requestPost('/register', {
@@ -38,6 +44,7 @@ function RegisterForms({ setResError }) {
         password,
         role: 'customer',
       });
+      saveLocalStorage(response.user, response.token);
       return response;
     } catch (error) {
       setResError(error);

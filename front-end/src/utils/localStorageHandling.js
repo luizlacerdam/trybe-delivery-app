@@ -18,7 +18,7 @@ const setStorageArray = (array, newItem, key) => {
   return newArray;
 };
 
-export default {
+module.exports = {
   setItem,
   getItem,
   getLocalStorage,

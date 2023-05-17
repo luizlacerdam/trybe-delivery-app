@@ -4,9 +4,12 @@ import Card from './components/Card';
 import { requestData } from '../../../services/requests';
 import Loading from '../../components/Loading';
 
+import { getLocalStorage } from '../../../utils/localStorageHandling';
+
 export default function ProductPage() {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const localS = getLocalStorage('user');
 
   useEffect(() => {
     const getProductsList = async () => {
@@ -16,11 +19,10 @@ export default function ProductPage() {
     };
     getProductsList();
   }, []);
-  console.log(products);
 
   return (
     <div>
-      <Navbar role="customer" username="Luiz Lacerda" />
+      <Navbar role={ localS.role } username={ localS.name } />
       <section className="cards">
         { !loaded ? <Loading /> : (
           products.allProducts.map(({ id, urlImage, price, name }, index) => (

@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function Navbar({ username, role }) {
+  const history = useHistory();
+  const handleClick = () => {
+    localStorage.clear();
+    history.push('/login');
+  };
   return (
     <header>
       <div>
@@ -29,7 +35,7 @@ export default function Navbar({ username, role }) {
       >
         <button
           type="button"
-          onClick={ () => localStorage.clear() }
+          onClick={ handleClick }
         >
           Sair
 

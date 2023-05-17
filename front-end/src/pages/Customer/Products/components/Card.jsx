@@ -14,9 +14,7 @@ export default function Card({ id, urlImage, price, title }) {
       <div
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        R$
-        {' '}
-        {price}
+        {price.replace('.', ',')}
       </div>
       <div>
         <img
