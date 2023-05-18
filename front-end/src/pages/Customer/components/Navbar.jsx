@@ -30,10 +30,9 @@ export default function Navbar({ username, role }) {
         {username}
 
       </div>
-      <div
-        data-testid={ `${role}_products__element-navbar-link-logout` }
-      >
+      <div>
         <button
+          data-testid={ `${role}_products__element-navbar-link-logout` }
           type="button"
           onClick={ handleClick }
         >
