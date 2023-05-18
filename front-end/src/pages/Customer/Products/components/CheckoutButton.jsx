@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function CheckoutButton() {
+export default function CheckoutButton({ total }) {
   return (
     <button
       data-testid="customer_products__button-cart"
@@ -11,9 +12,12 @@ export default function CheckoutButton() {
       <div
         data-testid="customer_products__checkout-bottom-value"
       >
-        {total}
+        {total.toFixed(2).replace('.', ',')}
 
       </div>
     </button>
   );
 }
+CheckoutButton.propTypes = {
+  total: PropTypes.node.isRequired,
+};
