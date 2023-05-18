@@ -5,11 +5,14 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
 import UserProvider from './context/user/userProvider';
+import CheckoutProvider from './context/checkout/checkoutProvider';
 
 ReactDOM.render(
   <BrowserRouter>
     <UserProvider>
-      <App />
+      <CheckoutProvider>
+        <App />
+      </CheckoutProvider>
     </UserProvider>
   </BrowserRouter>,
   document.getElementById('root'),
