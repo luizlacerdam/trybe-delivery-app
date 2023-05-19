@@ -5,6 +5,7 @@ import { requestData } from '../../../services/requests';
 import Loading from '../../components/Loading';
 
 import { getLocalStorage } from '../../../utils/localStorageHandling';
+import CheckoutButton from './components/CheckoutButton';
 
 export default function ProductPage() {
   const [products, setProducts] = useState([]);
@@ -19,6 +20,8 @@ export default function ProductPage() {
     };
     getProductsList();
   }, []);
+
+  useEffect(() => () => { localStorage.setItem('test', 'test'); }, []);
 
   return (
     <div>
@@ -36,6 +39,7 @@ export default function ProductPage() {
           ))
         )}
       </section>
+      <CheckoutButton total={ 0.001 } />
     </div>
   );
 }

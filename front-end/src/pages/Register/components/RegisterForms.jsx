@@ -53,7 +53,6 @@ function RegisterForms({ setResError }) {
 
   const handleClick = async () => {
     const response = await createUser();
-    console.log(response);
     if (response) {
       history.push('/customer/products');
     }

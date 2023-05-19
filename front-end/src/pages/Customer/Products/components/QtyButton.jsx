@@ -1,8 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getLocalStorage, setStorageArray } from '../../../../utils/localStorageHandling';
 
-export default function QtyButton({ id }) {
+export default function QtyButton({ id, price, title, urlImage }) {
   const [qty, setQty] = useState(0);
+
+  const product = {
+    id,
+    price,
+    title,
+    urlImage,
+    qty,
+  };
+
+  useEffect(() => {
+    const cartArr = getLocalStorage('cart');
+    if (cartArr.find((p) => p.id === product.id)) {
+      const cartArrFilter = cartArr.filter((p) => p.id === product.id);
+      setQty(cartArrFilter[0].qty);
+    } else {
+      setQty(0);
+    }
+  }, []);
+
+  useEffect(() => {
+    const cartArr = getLocalStorage('cart');
+    if (qty > 0) {
+      setStorageArray(cartArr, product, 'cart');
+    }
+  }, [qty]);
 
   function handleQty(event) {
     const targetId = event.target.id;
@@ -19,7 +45,7 @@ export default function QtyButton({ id }) {
 
   function handleChange(event) {
     const { value } = event.target;
-    setQty(value);
+    setQty(+value);
   }
   return (
     <div>
@@ -32,6 +58,7 @@ export default function QtyButton({ id }) {
       </button>
       <input
         type="number"
+        min={ 0 }
         onChange={ handleChange }
         value={ qty }
         data-testid={ `customer_products__input-card-quantity-${id}` }
@@ -50,4 +77,7 @@ export default function QtyButton({ id }) {
 
 QtyButton.propTypes = ({
   id: PropTypes.any,
+  imgUrl: PropTypes.any,
+  price: PropTypes.any,
+  title: PropTypes.any,
 }).isRequired;

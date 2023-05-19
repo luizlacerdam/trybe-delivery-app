@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import QtyButton from './QtyButton';
 
 export default function Card({ id, urlImage, price, title }) {
-  console.log(urlImage);
   return (
     <div>
       <div
@@ -24,7 +23,7 @@ export default function Card({ id, urlImage, price, title }) {
         />
       </div>
 
-      <QtyButton id={ id } />
+      <QtyButton id={ id } urlImage={ urlImage } price={ price } title={ title } />
     </div>
   );
 }
