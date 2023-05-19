@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getLocalStorage, setStorageArray } from '../../../../utils/localStorageHandling';
 
-export default function QtyButton({ id, price, title, urlImage, setTotal, total }) {
+export default function QtyButton({ id, price, title, urlImage, setTotal }) {
   const [qty, setQty] = useState(0);
   const [localSs, setLocalSs] = useState(getLocalStorage('cart'));
   const product = {

@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { getLocalStorage } from '../../../../utils/localStorageHandling';
 
-export default function CheckoutButton({ total, setTotal }) {
+export default function CheckoutButton({ total }) {
   const history = useHistory();
   return (
     <button
