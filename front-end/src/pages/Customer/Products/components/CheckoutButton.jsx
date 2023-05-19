@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { getLocalStorage } from '../../../../utils/localStorageHandling';
 
-export default function CheckoutButton({ total }) {
+export default function CheckoutButton({ total, setTotal }) {
   return (
     <button
       data-testid="customer_products__button-cart"
@@ -13,7 +14,6 @@ export default function CheckoutButton({ total }) {
         data-testid="customer_products__checkout-bottom-value"
       >
         {total.toFixed(2).replace('.', ',')}
-
       </div>
     </button>
   );

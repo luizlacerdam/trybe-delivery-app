@@ -9,9 +9,12 @@ import CheckoutButton from './components/CheckoutButton';
 
 export default function ProductPage() {
   const [products, setProducts] = useState([]);
+  const [total, setTotal] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const localS = getLocalStorage('user');
-
+  useEffect(() => {
+    console.log('Refresh index');
+  }, [total]);
   useEffect(() => {
     const getProductsList = async () => {
       const data = await requestData('/customer/products');
@@ -21,8 +24,6 @@ export default function ProductPage() {
     getProductsList();
   }, []);
 
-  useEffect(() => () => { localStorage.setItem('test', 'test'); }, []);
-
   return (
     <div>
       <Navbar role={ localS.role } username={ localS.name } />
@@ -30,6 +31,8 @@ export default function ProductPage() {
         { !loaded ? <Loading /> : (
           products.allProducts.map(({ id, urlImage, price, name }, index) => (
             <Card
+              setTotal={ setTotal }
+              total={ total }
               id={ id }
               urlImage={ urlImage }
               price={ price }
@@ -39,7 +42,7 @@ export default function ProductPage() {
           ))
         )}
       </section>
-      <CheckoutButton total={ 0.001 } />
+      <CheckoutButton total={ total } setTotal={ setTotal } />
     </div>
   );
 }

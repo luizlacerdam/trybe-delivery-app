@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getLocalStorage, setStorageArray } from '../../../../utils/localStorageHandling';
 
-export default function QtyButton({ id, price, title, urlImage }) {
+export default function QtyButton({ id, price, title, urlImage, setTotal, total }) {
   const [qty, setQty] = useState(0);
-
+  const [localSs, setLocalSs] = useState(getLocalStorage('cart'));
   const product = {
     id,
     price,
@@ -12,6 +12,14 @@ export default function QtyButton({ id, price, title, urlImage }) {
     urlImage,
     qty,
   };
+  useEffect(() => {
+    if (qty > 0) {
+      setTotal(localSs.reduce((acc, cur) => {
+        const totalLocal = cur.price * cur.qty;
+        return acc + totalLocal;
+      }, 0));
+    }
+  }, [qty, localSs, setTotal]);
 
   useEffect(() => {
     const cartArr = getLocalStorage('cart');
@@ -24,9 +32,11 @@ export default function QtyButton({ id, price, title, urlImage }) {
   }, []);
 
   useEffect(() => {
+    console.log('log do qty');
     const cartArr = getLocalStorage('cart');
     if (qty > 0) {
-      setStorageArray(cartArr, product, 'cart');
+      const novoArr = setStorageArray(cartArr, product, 'cart');
+      setLocalSs(novoArr);
     }
   }, [qty]);
 
@@ -80,4 +90,5 @@ QtyButton.propTypes = ({
   imgUrl: PropTypes.any,
   price: PropTypes.any,
   title: PropTypes.any,
+  setTotal: PropTypes.any,
 }).isRequired;

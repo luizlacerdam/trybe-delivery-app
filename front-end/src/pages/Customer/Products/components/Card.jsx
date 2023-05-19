@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import QtyButton from './QtyButton';
 
-export default function Card({ id, urlImage, price, title }) {
+export default function Card({ id, urlImage, price, title, setTotal, total }) {
+  console.log(total);
   return (
     <div>
       <div
@@ -23,7 +24,14 @@ export default function Card({ id, urlImage, price, title }) {
         />
       </div>
 
-      <QtyButton id={ id } urlImage={ urlImage } price={ price } title={ title } />
+      <QtyButton
+        id={ id }
+        urlImage={ urlImage }
+        price={ price }
+        title={ title }
+        setTotal={ setTotal }
+        total={ total }
+      />
     </div>
   );
 }
@@ -33,4 +41,5 @@ Card.propTypes = ({
   imgUrl: PropTypes.any,
   price: PropTypes.any,
   title: PropTypes.any,
+  setTotal: PropTypes.any,
 }).isRequired;
