@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Product({ index, title, qty, price }) {
+  const subtotal = (qty * price).toString().replace('.', ',');
   return (
     <div>
       <div
@@ -22,12 +23,12 @@ export default function Product({ index, title, qty, price }) {
       <div
         data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
       >
-        {price}
+        {price.replace('.', ',')}
       </div>
       <div
         data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
       >
-        SubTotal
+        {subtotal}
       </div>
       <button
         type="button"
