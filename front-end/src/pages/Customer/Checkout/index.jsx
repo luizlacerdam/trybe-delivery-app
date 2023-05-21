@@ -4,17 +4,29 @@ import Product from './components/Product';
 import { getLocalStorage } from '../../../utils/localStorageHandling';
 import Loading from '../../components/Loading';
 import DetalhesEntrega from './components/DetalhesEntrega';
+import { requestData } from '../../../services/requests';
 
 export default function CheckoutPage() {
   const [cart, setCart] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [sellers, setSellers] = useState([]);
+
+  async function getSellers() {
+    try {
+      const dataSellers = await requestData('/sellers');
+      setSellers(dataSellers.sellers);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const cartArr = getLocalStorage('cart');
     setCart(cartArr);
+    getSellers();
     setLoaded(true);
   }, []);
-
+  console.log(sellers);
   return (
     <div>
       <Navbar />

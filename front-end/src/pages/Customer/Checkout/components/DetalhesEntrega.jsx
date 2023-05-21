@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function DetalhesEntrega({ sellers }) {
   const [seller, setSeller] = useState('');
@@ -31,7 +32,7 @@ export default function DetalhesEntrega({ sellers }) {
         onChange={ handleSelect }
       >
         {sellers.map((s, key) => (
-          <option key={ key } value={ s }>{s}</option>
+          <option key={ key } value={ s.name }>{s.name}</option>
         ))}
       </select>
       <input
