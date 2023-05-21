@@ -28,6 +28,16 @@ const create = async (req, res, next) => {
     }
 };
 
+const getSellers = async (req, res, next) => {
+    try {
+        const sellers = await UserService.getSellers();
+        return res.status(200).json({ sellers });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = { 
     create,
+    getSellers,
  };
