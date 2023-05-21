@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Product({ index, name, qty, price }) {
+export default function Product({ index, title, qty, price }) {
   return (
     <div>
       <div
         data-testid={ `customer_checkout__element-order-table-item-number-${index}` }
       >
-        {index}
+        {index + 1}
       </div>
       <div
         data-testid={ `customer_checkout__element-order-table-name-${index}` }
       >
-        {name}
+        {title}
       </div>
       <div
         data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
