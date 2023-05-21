@@ -1,6 +1,6 @@
 const { UserService } = require('../services');
 const { hashMd5Encrypt } = require('../utils/md5');
-const tokenGenerator = require('../utils/tokenGenerator');
+const tokenGenerator = require('../utils/tokenRelated');
 
 const isBodyValid = (name, email, password) => name && email && password;
 

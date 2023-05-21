@@ -1,6 +1,6 @@
 require('dotenv/config');
 const { UserService } = require('../services');
-const tokenGenerator = require('../utils/tokenGenerator');
+const { tokenGenerator } = require('../utils/tokenRelated');
 const { hashMd5Compare } = require('../utils/md5');
 
 const isBodyValid = (email, password) => email && password;

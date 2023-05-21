@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { requestPost } from '../../../../services/requests';
 
 export default function DetalhesEntrega({ sellers }) {
   const [seller, setSeller] = useState('');
@@ -18,8 +19,8 @@ export default function DetalhesEntrega({ sellers }) {
     setNumber(event.target.value);
   }
 
-  function handleClick() {
-
+  async function handleClick() {
+    // const request = requestPost()
   }
 
   return (
