@@ -9,7 +9,7 @@ export default function TotalPrice({ total }) {
       <span
         data-testid="customer_checkout__element-order-total-price"
       >
-        {total.toString().replace('.', ',')}
+        {total.toFixed(2).toString().replace('.', ',')}
       </span>
     </div>
   );

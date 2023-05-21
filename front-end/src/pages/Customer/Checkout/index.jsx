@@ -34,6 +34,16 @@ export default function CheckoutPage() {
     getSellers();
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    const cartArr = getLocalStorage('cart');
+    const totalP = cartArr.reduce((acc, cur) => {
+      const totalLocal = cur.price * cur.qty;
+      return acc + totalLocal;
+    }, 0);
+    setTotal(totalP);
+  }, [cart]);
+
   return (
     <div>
       <Navbar />
@@ -49,6 +59,8 @@ export default function CheckoutPage() {
             price={ price }
             title={ title }
             key={ index }
+            cart={ cart }
+            setCart={ setCart }
           />
         ))
       )}
