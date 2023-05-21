@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function TotalPrice({ total }) {
+export default function TotalPrice({ total }) {
   return (
     <div>
       Total: R$
@@ -9,7 +9,7 @@ function TotalPrice({ total }) {
       <span
         data-testid="customer_checkout__element-order-total-price"
       >
-        {total.replace('.', ',')}
+        {total.toString().replace('.', ',')}
       </span>
     </div>
   );
