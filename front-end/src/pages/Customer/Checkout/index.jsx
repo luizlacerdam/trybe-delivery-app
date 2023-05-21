@@ -45,6 +45,7 @@ export default function CheckoutPage() {
           />
         ))
       )}
+
       <span>Detalhes e Endereço para Entrega</span>
       <DetalhesEntrega sellers={ sellers } />
     </div>
