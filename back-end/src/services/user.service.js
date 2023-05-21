@@ -8,8 +8,11 @@ const login = async () => {
     
 };
 
+const getSellers = async () => User.findAll({ where: { role: 'seller' } });
+
 module.exports = {
     getByEmail,
     create,
     login,
+    getSellers,
 };

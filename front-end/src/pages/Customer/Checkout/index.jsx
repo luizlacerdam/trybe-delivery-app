@@ -3,11 +3,12 @@ import Navbar from '../components/Navbar';
 import Product from './components/Product';
 import { getLocalStorage } from '../../../utils/localStorageHandling';
 import Loading from '../../components/Loading';
+import DetalhesEntrega from './components/DetalhesEntrega';
 
 export default function CheckoutPage() {
   const [cart, setCart] = useState([]);
   const [loaded, setLoaded] = useState(false);
-
+  const [sellers, setSellers] = useState([]);
   useEffect(() => {
     const cartArr = getLocalStorage('cart');
     setCart(cartArr);
@@ -33,6 +34,7 @@ export default function CheckoutPage() {
         ))
       )}
       <span>Detalhes e Endereço para Entrega</span>
+      <DetalhesEntrega sellers={ sellers } />
     </div>
   );
 }
