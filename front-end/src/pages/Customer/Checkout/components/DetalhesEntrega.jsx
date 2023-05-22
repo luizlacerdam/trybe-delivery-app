@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { requestPost } from '../../../../services/requests';
+// import { requestPostWithToken } from '../../../../services/requests';
+import { getItem } from '../../../../utils/localStorageHandling';
 
-export default function DetalhesEntrega({ sellers }) {
-  const [seller, setSeller] = useState('');
+export default function DetalhesEntrega({ sellers, total }) {
+  const [seller, setSeller] = useState();
   const [adress, setAdress] = useState('');
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState('');
 
-  function handleSelect(event) {
-    setSeller(event.target.value);
-  }
+  // function handleSelect(event) {
+  //   setSeller(event.target.value);
+  // }
 
   function handleAdress(event) {
     setAdress(event.target.value);
@@ -20,7 +21,19 @@ export default function DetalhesEntrega({ sellers }) {
   }
 
   async function handleClick() {
-    // const request = requestPost()
+    const user = getItem('user');
+    // const { token } = user;
+
+    const data = {
+      userId: user.id,
+      sellerId: seller,
+      totalPrice: total,
+      delivery_adress: adress,
+      delivery_number: number,
+      status: 'Pending',
+    };
+    console.log(data);
+    // const request = await requestPostWithToken('/customer/orders', data, token);
   }
 
   return (
@@ -30,10 +43,10 @@ export default function DetalhesEntrega({ sellers }) {
         id=""
         data-testid="customer_checkout__select-seller"
         value={ seller }
-        onChange={ handleSelect }
+        onChange={ ({ target: { value } }) => setSeller(value) }
       >
-        {sellers.map((s, key) => (
-          <option key={ key } value={ s.name }>{s.name}</option>
+        {sellers.map(({ name, id }, key) => (
+          <option key={ key } value={ id }>{name}</option>
         ))}
       </select>
       <input
@@ -44,7 +57,7 @@ export default function DetalhesEntrega({ sellers }) {
       />
       <input
         data-testid="customer_checkout__input-address-number"
-        type="text"
+        type="number"
         value={ number }
         onChange={ handleNumber }
       />
@@ -61,4 +74,5 @@ export default function DetalhesEntrega({ sellers }) {
 
 DetalhesEntrega.propTypes = ({
   sellers: PropTypes.any,
+  total: PropTypes.any,
 }).isRequired;

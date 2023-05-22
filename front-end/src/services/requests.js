@@ -23,4 +23,13 @@ export const requestPost = async (endpoint, body) => {
   return data;
 };
 
+export const requestPostWithToken = async (endpoint, body, token) => {
+  const { data } = await api.post(endpoint, { headers: {
+    Authorization: token,
+  },
+  body,
+  });
+  return data;
+};
+
 export default api;
