@@ -1,6 +1,6 @@
-import { tokenValidation } from '../utils/tokenRelated';
+const tokenValidation = require('../utils/tokenRelated');
 
-export default (req, res, next) => {
+const validateToken = (req, res, next) => {
   const token = req.header('Authorization');
 
   if (!token) {
@@ -16,4 +16,8 @@ export default (req, res, next) => {
   } catch (error) {
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
+};
+
+module.exports = {
+  validateToken,
 };

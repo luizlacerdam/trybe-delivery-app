@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
-const { loginRouter, userRouter, registerRouter } = require('../routers');
+const { loginRouter, userRouter, registerRouter, saleRouter } = require('../routers');
 const { errorMiddleware } = require('../middlewares/errorMiddleware');
 const { UserController } = require('../controllers');
 
@@ -14,6 +14,8 @@ app.use('/images', express.static(path.resolve(`${__dirname}/../images`)));
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/customer', userRouter);
+app.use('/customer', saleRouter);
+
 app.get('/sellers', UserController.getSellers);
 app.get('/coffee', (_req, res) => res.status(418).end());
 app.use(errorMiddleware);

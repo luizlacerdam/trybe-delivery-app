@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { requestPost } from '../../../../services/requests';
+// import { requestPost } from '../../../../services/requests';
 
 export default function DetalhesEntrega({ sellers }) {
   const [seller, setSeller] = useState('');
