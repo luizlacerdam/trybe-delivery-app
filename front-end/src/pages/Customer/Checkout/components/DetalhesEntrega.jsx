@@ -8,9 +8,10 @@ export default function DetalhesEntrega({ sellers, total }) {
   const [adress, setAdress] = useState('');
   const [number, setNumber] = useState('');
 
-  // function handleSelect(event) {
-  //   setSeller(event.target.value);
-  // }
+  function handleSelect(event) {
+    console.log('handleSelect');
+    setSeller(event.target.value);
+  }
 
   function handleAdress(event) {
     setAdress(event.target.value);
@@ -43,7 +44,7 @@ export default function DetalhesEntrega({ sellers, total }) {
         id=""
         data-testid="customer_checkout__select-seller"
         value={ seller }
-        onChange={ ({ target: { value } }) => setSeller(value) }
+        onChange={ handleSelect }
       >
         {sellers.map(({ name, id }, key) => (
           <option key={ key } value={ id }>{name}</option>
