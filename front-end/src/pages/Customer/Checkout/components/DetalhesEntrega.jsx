@@ -35,7 +35,6 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
       },
       cart,
     };
-    console.log(data);
     try {
       const response = await requestPostWithToken('/customer/orders', data, token);
       setItem('cart', []);

@@ -1,4 +1,5 @@
 const { Sale } = require('../database/models');
+const { SaleProduct } = require('../database/models');
 
 const create = async (newSale) => {
     const { order, cart } = newSale;   
@@ -9,7 +10,7 @@ const create = async (newSale) => {
         productId: p.id,
         quantity: p.qty,
     }));
-    console.log(productSaleArr);
+    await SaleProduct.bulkCreate(productSaleArr);
 
     return createNewSale;
 };
