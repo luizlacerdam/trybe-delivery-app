@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function OrderCard({ id, status, totalPrice, date }) {
+  const convertDate = new Date(date);
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  };
+  const formattedDate = convertDate.toLocaleDateString('en-GB', options);
   return (
     <div>
       <label
@@ -23,13 +30,14 @@ export default function OrderCard({ id, status, totalPrice, date }) {
       <div
         data-testid={ `customer_orders__element-order-date-${id}` }
       >
-        {date}
+        {formattedDate}
       </div>
       <div
         data-testid={ `customer_orders__element-card-price-${id}` }
 
       >
-        {totalPrice}
+        R$
+        {totalPrice.replace('.', ',')}
       </div>
     </div>
   );

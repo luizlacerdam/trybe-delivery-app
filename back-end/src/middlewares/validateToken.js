@@ -10,7 +10,7 @@ const validateToken = (req, res, next) => {
   try {
     const decoded = tokenValidation(token);
     // const user = await UserService.getById(decoded.data.userId);
-    req.body = decoded;
+    req.body.user = { ...decoded.data };
     next();
   } catch (error) {
     return res.status(401).json({ error: error.message });
