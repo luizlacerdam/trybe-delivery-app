@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { requestPostWithToken } from '../../../../services/requests';
-import { getItem } from '../../../../utils/localStorageHandling';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { requestPostWithToken } from '../../../../services/requests';
+import { getItem, setItem } from '../../../../utils/localStorageHandling';
 
 export default function DetalhesEntrega({ sellers, total }) {
   const [seller, setSeller] = useState();
-  const [adress, setAdress] = useState('');
+  const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
-
+  const history = useHistory();
   function handleSelect(event) {
-    console.log('handleSelect');
     setSeller(event.target.value);
   }
 
-  function handleAdress(event) {
-    setAdress(event.target.value);
+  function handleAddress(event) {
+    setAddress(event.target.value);
   }
 
   function handleNumber(event) {
@@ -23,18 +23,23 @@ export default function DetalhesEntrega({ sellers, total }) {
 
   async function handleClick() {
     const user = getItem('user');
-    // const { token } = user;
-
+    const { token } = user;
     const data = {
-      userId: user.id,
-      sellerId: seller,
-      totalPrice: total,
-      delivery_adress: adress,
-      delivery_number: number,
+      userId: +user.id,
+      sellerId: +seller,
+      totalPrice: +total.toFixed(2),
+      deliveryAddress: address,
+      deliveryNumber: +number,
       status: 'Pending',
     };
     console.log(data);
-    // const request = await requestPostWithToken('/customer/orders', data, token);
+    try {
+      const response = await requestPostWithToken('/customer/orders', data, token);
+      setItem('cart', []);
+      history.push(`/customer/orders/${response.data.id}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -46,6 +51,7 @@ export default function DetalhesEntrega({ sellers, total }) {
         value={ seller }
         onChange={ handleSelect }
       >
+        <option>Selecione o vendedor</option>
         {sellers.map(({ name, id }, key) => (
           <option key={ key } value={ id }>{name}</option>
         ))}
@@ -53,8 +59,8 @@ export default function DetalhesEntrega({ sellers, total }) {
       <input
         data-testid="customer_checkout__input-address"
         type="text"
-        value={ adress }
-        onChange={ handleAdress }
+        value={ address }
+        onChange={ handleAddress }
       />
       <input
         data-testid="customer_checkout__input-address-number"

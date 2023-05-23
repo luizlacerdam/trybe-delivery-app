@@ -1,4 +1,4 @@
-const tokenValidation = require('../utils/tokenRelated');
+const { tokenValidation } = require('../utils/tokenRelated');
 
 const validateToken = (req, res, next) => {
   const token = req.header('Authorization');
@@ -11,10 +11,10 @@ const validateToken = (req, res, next) => {
     const decoded = tokenValidation(token);
     // const user = await UserService.getById(decoded.data.userId);
     req.body.user = decoded;
-    console.log(decoded);
+    // console.log(decoded);
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Token must be a valid token' });
+    return res.status(401).json({ error: error.message });
   }
 };
 

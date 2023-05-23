@@ -24,11 +24,7 @@ export const requestPost = async (endpoint, body) => {
 };
 
 export const requestPostWithToken = async (endpoint, body, token) => {
-  const { data } = await api.post(endpoint, { headers: {
-    Authorization: token,
-  },
-  body,
-  });
+  const { data } = await api.post(endpoint, body, { headers: { Authorization: token } });
   return data;
 };
 

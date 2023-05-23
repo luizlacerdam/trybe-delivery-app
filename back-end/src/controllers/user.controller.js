@@ -11,18 +11,14 @@ const create = async (req, res, next) => {
             return res.status(400).json({ message: 'Some required fields are missing' });
         }
         const user = await UserService.getByEmail(email);
-        if (user) {
-            return res.status(409).json({ message: 'Email já cadastrado.' }); 
-        }
-        
+        if (user) { return res.status(409).json({ message: 'Email já cadastrado.' }); }
         const cryptoPass = hashMd5Encrypt(password); 
-        
-        const createNewUser = await UserService.create({ 
+        const newUser = await UserService.create({ 
             name, email, password: cryptoPass, role });
-
-        const token = tokenGenerator({ data: { 
-            name: createNewUser.name, email: createNewUser.email, role: createNewUser.role } });
-        return res.status(201).json({ token, user: { name, email, role } });
+        const userObj = { 
+            id: newUser.id, name: newUser.name, email: newUser.email, role: newUser.role };
+        const token = tokenGenerator({ data: { ...userObj } });
+        return res.status(201).json({ token, user: { ...userObj } });
     } catch (err) {
         next(err);
     }
