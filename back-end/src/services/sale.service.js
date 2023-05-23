@@ -1,6 +1,18 @@
 const { Sale } = require('../database/models');
 
-const create = async (newSale) => Sale.create(newSale);
+const create = async (newSale) => {
+    const { order, cart } = newSale;   
+    const createNewSale = await Sale.create(order);
+
+    const productSaleArr = cart.map((p) => ({ 
+        saleId: createNewSale.id,
+        productId: p.id,
+        quantity: p.qty,
+    }));
+    console.log(productSaleArr);
+
+    return createNewSale;
+};
 
 const findAll = async () => Sale.findAll();
 

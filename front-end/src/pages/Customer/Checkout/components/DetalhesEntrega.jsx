@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestPostWithToken } from '../../../../services/requests';
 import { getItem, setItem } from '../../../../utils/localStorageHandling';
 
-export default function DetalhesEntrega({ sellers, total }) {
+export default function DetalhesEntrega({ sellers, total, cart }) {
   const [seller, setSeller] = useState();
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
@@ -25,12 +25,15 @@ export default function DetalhesEntrega({ sellers, total }) {
     const user = getItem('user');
     const { token } = user;
     const data = {
-      userId: +user.id,
-      sellerId: +seller,
-      totalPrice: +total.toFixed(2),
-      deliveryAddress: address,
-      deliveryNumber: +number,
-      status: 'Pending',
+      order: {
+        userId: +user.id,
+        sellerId: +seller,
+        totalPrice: +total.toFixed(2),
+        deliveryAddress: address,
+        deliveryNumber: +number,
+        status: 'Pendente',
+      },
+      cart,
     };
     console.log(data);
     try {
@@ -82,4 +85,5 @@ export default function DetalhesEntrega({ sellers, total }) {
 DetalhesEntrega.propTypes = ({
   sellers: PropTypes.any,
   total: PropTypes.any,
+  cart: PropTypes.any,
 }).isRequired;
