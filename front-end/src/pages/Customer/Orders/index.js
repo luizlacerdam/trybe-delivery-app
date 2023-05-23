@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import OrderCard from './components/OrderCard';
-// import { requestData } from '../../../services/requests';
+import { requestDataWithToken } from '../../../services/requests';
+import { getItem } from '../../../utils/localStorageHandling';
 
 export default function Orders() {
-//   const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-  //   useEffect(() => {
-  //     const data = requestData('/');
-  //   }, []);
+  async function getOrders() {
+    const { token } = getItem('user');
+    const data = await requestDataWithToken('/customer/orders', token);
+    setOrders(data);
+  }
+
+  useEffect(() => {
+    getOrders();
+  }, []);
+  console.log(orders);
   return (
     <div>
       <Navbar />

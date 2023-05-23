@@ -15,7 +15,7 @@ const create = async (newSale) => {
     return createNewSale;
 };
 
-const findAll = async () => Sale.findAll();
+const findAll = async (id) => Sale.findAll({ where: { userId: id } });
 
 const findByPk = async (id) => Sale.findByPk(id);
 

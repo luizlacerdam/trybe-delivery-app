@@ -23,7 +23,7 @@ const login = async (req, res, next) => {
       return res.status(422).json({ message: 'Password is incorrect' });
     }
     const { id, name, role } = user;
-    const token = tokenGenerator({ data: id, name, role, email });
+    const token = tokenGenerator({ data: { id, name, role, email } });
 
     return res.status(200).json({ token, user: { id, name, role, email } });
   } catch (err) {
