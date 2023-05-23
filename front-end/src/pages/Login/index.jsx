@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Form from './components/Form';
-// import userContext from '../../context/user/userContext';
-
-// const REDIRECT_PATHS = {
-//   customer: '/customer/products',
-//   seller: '/seller/orders',
-//   administrator: '/admin/manage',
-// };
+import { getItem } from '../../utils/localStorageHandling';
 
 function Login() {
-  // const { token } = useContext(userContext);
   const [resError, setResError] = useState();
-  // const history = useHistory();
-  // useEffect(() => {
-  //   history.push(REDIRECT_PATHS[role]);
-  // }, [role, history]);
+  const [user, setUser] = useState();
+  const history = useHistory();
 
-  // useEffect(() => {
-  //   if (token) history.push('/customer/products');
-  // });
+  const REDIRECT_PATHS = {
+    customer: '/customer/products',
+    seller: '/seller/orders',
+    administrator: '/admin/manage',
+  };
+  useEffect(() => {
+    const localUser = getItem('user');
+    setUser(localUser);
+  }, []);
+
+  useEffect(() => {
+    if (user.token) {
+      history.push(REDIRECT_PATHS[user.role]);
+    }
+  }, [user]);
 
   return (
     <div>
