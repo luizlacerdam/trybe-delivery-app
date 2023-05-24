@@ -5,10 +5,10 @@ import OrderItens from './components/OrderItens';
 import { requestDataWithToken } from '../../../services/requests';
 import { getItem } from '../../../utils/localStorageHandling';
 import Loading from '../../components/Loading';
+import TotalPrice from './components/TotalPrice';
 
 export default function OrderDetails(props) {
   const [dataObj, setDataObj] = useState();
-  //   const [cartArr, setCartArr] = useState
   const [loaded, setLoaded] = useState(false);
   const { match } = props;
   const { id } = match.params;
@@ -44,9 +44,9 @@ export default function OrderDetails(props) {
             qty={ SaleProduct.quantity }
             price={ price }
           />))}
+          <TotalPrice totalPrice={ dataObj.order.totalPrice } />
         </div>
       ) : <Loading />}
-
     </div>
   );
 }

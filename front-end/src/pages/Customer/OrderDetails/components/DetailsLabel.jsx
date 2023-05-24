@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function DetailsLabel({ id, seller, status, date }) {
+  const [delivered, setDelivered] = useState();
   const tes = `customer_order_details__element-order-details-label-delivery-status-${id}`;
   const convertDate = new Date(date);
   const options = {
@@ -10,14 +11,16 @@ export default function DetailsLabel({ id, seller, status, date }) {
     year: 'numeric',
   };
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
+  function handleClick() {
 
+  }
   return (
     <div>
       <div>
         <div
           data-testid="customer_order_details__element-order-details-label-order-id"
         >
-          {`PEDIDO ${id}`}
+          {id}
         </div>
         <div
           data-testid="customer_order_details__element-order-details-label-seller-name"
@@ -38,6 +41,8 @@ export default function DetailsLabel({ id, seller, status, date }) {
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
+        disabled
+        onClick={ handleClick }
       >
         MARCAR COMO ENTREGUE
       </button>
