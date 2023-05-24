@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function DetailsLabel({ id, seller, status }) {
+export default function DetailsLabel({ id, seller, status, date }) {
   const tes = `customer_order_details__element-order-details-label-delivery-status-${id}`;
+  const convertDate = new Date(date);
+  const options = {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  };
+  const formattedDate = convertDate.toLocaleDateString('en-GB', options);
+
   return (
     <div>
       <div>
@@ -19,7 +27,7 @@ export default function DetailsLabel({ id, seller, status }) {
         <div
           data-testid="customer_order_details__element-order-details-label-order-date"
         >
-          {date}
+          {formattedDate}
         </div>
         <div
           data-testid={ tes }
@@ -39,6 +47,7 @@ export default function DetailsLabel({ id, seller, status }) {
 
 DetailsLabel.propTypes = ({
   id: PropTypes.any,
+  seller: PropTypes.any,
   status: PropTypes.any,
   date: PropTypes.any,
 }).isRequired;

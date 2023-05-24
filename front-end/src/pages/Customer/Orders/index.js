@@ -21,7 +21,7 @@ export default function Orders() {
   useEffect(() => {
     getOrders();
   }, []);
-  console.log(orders);
+
   return (
     <div>
       <Navbar />
