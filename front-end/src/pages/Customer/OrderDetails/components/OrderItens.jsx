@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function OrderItens({ index, name, qty, price }) {
-  const subTotal = qty * price;
+  const subTotal = (qty * price).toFixed(2);
   return (
     <div>
       <div
@@ -23,12 +23,12 @@ export default function OrderItens({ index, name, qty, price }) {
       <div
         data-testid={ `customer_order_details__element-order-table-unit-price-${index}` }
       >
-        {price}
+        {price.replace('.', ',')}
       </div>
       <div
         data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
       >
-        {subTotal}
+        {subTotal.toString().replace('.', ',')}
       </div>
     </div>
   );

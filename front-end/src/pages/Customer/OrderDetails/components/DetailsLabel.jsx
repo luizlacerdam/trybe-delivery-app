@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { requestPatchWithToken } from '../../../../services/requests';
+import { getItem } from '../../../../utils/localStorageHandling';
 
-export default function DetailsLabel({ id, seller, status, date, token }) {
+export default function DetailsLabel({ id, seller, status, date }) {
   const [delivered, setDelivered] = useState(false);
   const tes = `customer_order_details__element-order-details-label-delivery-status-${id}`;
   const convertDate = new Date(date);
@@ -16,11 +18,17 @@ export default function DetailsLabel({ id, seller, status, date, token }) {
   }, []);
 
   async function updateStatus() {
-
+    const { token } = getItem('user');
+    const response = await requestPatchWithToken(
+      `/customer/order/${id}`,
+      'Entregue',
+      token,
+    );
+    console.log(response);
   }
 
   function handleClick() {
-
+    updateStatus();
   }
   return (
     <div>
@@ -59,7 +67,6 @@ export default function DetailsLabel({ id, seller, status, date, token }) {
 }
 
 DetailsLabel.propTypes = ({
-  token: PropTypes.any,
   id: PropTypes.any,
   seller: PropTypes.any,
   status: PropTypes.any,
