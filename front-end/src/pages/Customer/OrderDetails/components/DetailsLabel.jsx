@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default function DetailsLabel({ id, seller, status, date }) {
-  const [delivered, setDelivered] = useState();
+export default function DetailsLabel({ id, seller, status, date, token }) {
+  const [delivered, setDelivered] = useState(false);
   const tes = `customer_order_details__element-order-details-label-delivery-status-${id}`;
   const convertDate = new Date(date);
   const options = {
@@ -11,6 +11,14 @@ export default function DetailsLabel({ id, seller, status, date }) {
     year: 'numeric',
   };
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
+  useEffect(() => {
+    setDelivered(status === 'Entregue');
+  }, []);
+
+  async function updateStatus() {
+
+  }
+
   function handleClick() {
 
   }
@@ -41,7 +49,7 @@ export default function DetailsLabel({ id, seller, status, date }) {
       <button
         data-testid="customer_order_details__button-delivery-check"
         type="button"
-        disabled
+        disabled={ delivered }
         onClick={ handleClick }
       >
         MARCAR COMO ENTREGUE
@@ -51,6 +59,7 @@ export default function DetailsLabel({ id, seller, status, date }) {
 }
 
 DetailsLabel.propTypes = ({
+  token: PropTypes.any,
   id: PropTypes.any,
   seller: PropTypes.any,
   status: PropTypes.any,

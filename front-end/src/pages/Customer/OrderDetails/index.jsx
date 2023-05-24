@@ -36,6 +36,7 @@ export default function OrderDetails(props) {
             seller={ dataObj.seller.name }
             status={ dataObj.order.status }
             date={ dataObj.order.saleDate }
+            token={ token }
           />
           {dataObj.order.products.map(({ name, price, SaleProduct }, key) => (<OrderItens
             key={ key }
