@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function Navbar({ username, role }) {
   const history = useHistory();
@@ -10,15 +10,22 @@ export default function Navbar({ username, role }) {
   };
   return (
     <header>
-      <div
-        data-testid={ `${role}_products__element-navbar-link-products` }
-      >
-        PRODUTOS
+      <div>
+        <Link
+          data-testid={ `${role}_products__element-navbar-link-products` }
+          to="/customer/products"
+        >
+          PRODUTOS
+
+        </Link>
       </div>
-      <div
-        data-testid={ `${role}_products__element-navbar-link-orders` }
-      >
-        MEUS PEDIDOS
+      <div>
+        <Link
+          data-testid={ `${role}_products__element-navbar-link-orders` }
+          to="/customer/orders"
+        >
+          PEDIDOS
+        </Link>
       </div>
       <div
         data-testid={ `${role}_products__element-navbar-user-full-name` }

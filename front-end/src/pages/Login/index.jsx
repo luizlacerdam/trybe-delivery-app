@@ -19,7 +19,7 @@ function Login() {
   }, []);
 
   useEffect(() => {
-    if (user.token) {
+    if (user) {
       history.push(REDIRECT_PATHS[user.role]);
     }
   }, [user]);

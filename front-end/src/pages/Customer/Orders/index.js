@@ -8,11 +8,13 @@ import Loading from '../../components/Loading';
 export default function Orders() {
   const [orders, setOrders] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [user, setUser] = useState();
 
   async function getOrders() {
-    const { token } = getItem('user');
-    const { data } = await requestDataWithToken('/customer/orders', token);
+    const userLocal = getItem('user');
+    const { data } = await requestDataWithToken('/customer/orders', userLocal.token);
     setOrders(data);
+    setUser(userLocal);
     setLoaded(true);
   }
 
@@ -29,6 +31,7 @@ export default function Orders() {
         status={ status }
         totalPrice={ totalPrice }
         date={ saleDate }
+        role={ user.role }
       />)) : <Loading />}
 
     </div>
