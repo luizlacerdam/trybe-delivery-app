@@ -8,7 +8,7 @@ export default function OrderItens({ index, name, qty, price }) {
       <div
         data-testid={ `customer_order_details__element-order-table-item-number-${index}` }
       >
-        {index}
+        {index + 1}
       </div>
       <div
         data-testid={ `customer_order_details__element-order-table-name-${index}` }
@@ -39,4 +39,5 @@ OrderItens.propTypes = ({
   name: PropTypes.any,
   qty: PropTypes.any,
   price: PropTypes.any,
+  index: PropTypes.any,
 }).isRequired;

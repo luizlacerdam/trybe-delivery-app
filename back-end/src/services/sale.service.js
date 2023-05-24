@@ -1,6 +1,7 @@
 const { Sale } = require('../database/models');
 const { SaleProduct } = require('../database/models');
 const { User } = require('../database/models');
+const { Product } = require('../database/models');
 
 const create = async (newSale) => {
     const { order, cart } = newSale;   
@@ -19,13 +20,13 @@ const create = async (newSale) => {
 const findAll = async (id) => Sale.findAll({ where: { userId: id } });
 
 const findByPk = async (id) => {
-    const order = await Sale.findByPk(id);
-    
-    const cart = await SaleProduct.findAll({ where: { saleId: order.id } });
-
-    const seller = await User.findByPk(order.sellerId);
-
-    const data = { order, cart, seller };
+    const order = await Sale.findAll({ 
+        where: { id }, 
+        include: [{ model: Product, as: 'products', through: { attributes: ['quantity'] } }],
+    });
+   
+    const seller = await User.findByPk(order[0].sellerId);
+    const data = { order: order[0], seller };
     
    return data;
 };
