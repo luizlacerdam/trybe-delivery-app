@@ -35,10 +35,16 @@ const findByUserId = async (userId) => Sale.findAll({ where: { userId } });
 
 const findByStatus = async (status) => Sale.findAll({ where: { status } });
 
+const updateStatus = async (id, newStatus) => Sale.update(
+    { status: newStatus },
+    { where: { id } },
+  );
+
 module.exports = {
     create,
     findAll,
     findByPk,
     findByUserId,
     findByStatus,
+    updateStatus,
 };
