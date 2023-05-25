@@ -16,7 +16,7 @@ export default function DetailsLabel({ id, seller, status, date }) {
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
   useEffect(() => {
     setLocalStatus(status);
-    setDelivered(status === 'Entregue');
+    setDelivered(status !== 'Em Trânsito');
   }, []);
 
   async function updateStatus() {
