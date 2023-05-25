@@ -36,14 +36,24 @@ export default function Orders() {
   return (
     <div>
       <Navbar />
-      {loaded ? orders.map(({ id, status, totalPrice, saleDate }, key) => (<OrderCard
-        key={ key }
-        id={ id }
-        status={ status }
-        totalPrice={ totalPrice }
-        date={ saleDate }
-        role={ user.role }
-      />)) : <Loading />}
+      {loaded ? orders.map(({
+        id,
+        status, totalPrice,
+        saleDate,
+        deliveryAddress,
+        deliveryNumber,
+      }, key) => (
+        <OrderCard
+          key={ key }
+          id={ id }
+          status={ status }
+          totalPrice={ totalPrice }
+          date={ saleDate }
+          role={ user.role }
+          deliveryAddress={ deliveryAddress }
+          deliveryNumber={ deliveryNumber }
+        />
+      )) : <Loading />}
 
     </div>
   );
