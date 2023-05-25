@@ -14,7 +14,7 @@ app.use('/images', express.static(path.resolve(`${__dirname}/../images`)));
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/customer', userRouter);
-app.use('/customer', saleRouter);
+app.use('/', saleRouter);
 
 app.get('/sellers', UserController.getSellers);
 app.get('/coffee', (_req, res) => res.status(418).end());
