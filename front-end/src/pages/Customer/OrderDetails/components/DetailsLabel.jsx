@@ -5,6 +5,7 @@ import { getItem } from '../../../../utils/localStorageHandling';
 
 export default function DetailsLabel({ id, seller, status, date }) {
   const [delivered, setDelivered] = useState(false);
+  const [localStatus, setLocalStatus] = useState();
   const tes = `customer_order_details__element-order-details-label-delivery-status-${id}`;
   const convertDate = new Date(date);
   const options = {
@@ -14,22 +15,28 @@ export default function DetailsLabel({ id, seller, status, date }) {
   };
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
   useEffect(() => {
+    setLocalStatus(status);
     setDelivered(status === 'Entregue');
   }, []);
 
   async function updateStatus() {
     const { token } = getItem('user');
     const response = await requestPatchWithToken(
-      `/customer/order/${id}`,
-      'Entregue',
+      `/customer/orders/${id}`,
+      { status: 'Entregue' },
       token,
     );
-    console.log(response);
+    return response;
   }
 
-  function handleClick() {
-    updateStatus();
+  async function handleClick() {
+    const { data } = await updateStatus();
+    if (data.length > 0) {
+      setLocalStatus('Entregue');
+      setDelivered(true);
+    }
   }
+
   return (
     <div>
       <div>
@@ -51,7 +58,7 @@ export default function DetailsLabel({ id, seller, status, date }) {
         <div
           data-testid={ tes }
         >
-          {status}
+          {localStatus}
         </div>
       </div>
       <button
