@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function OrderCard({ id, status, totalPrice, date, role }) {
+export default function OrderCard({ id,
+  status, totalPrice, date, role, deliveryAddress, deliveryNumber }) {
   const convertDate = new Date(date);
   const options = {
     day: '2-digit',
@@ -20,7 +21,7 @@ export default function OrderCard({ id, status, totalPrice, date, role }) {
           htmlFor="order-id"
         >
           <span
-            data-testid={ `customer_orders__element-order-id-${id}` }
+            data-testid={ `${role}_orders__element-order-id-${id}` }
             id="order-id"
           >
             {id}
@@ -28,21 +29,30 @@ export default function OrderCard({ id, status, totalPrice, date, role }) {
           Pedido
         </label>
         <div
-          data-testid={ `customer_orders__element-delivery-status-${id}` }
+          data-testid={ `${role}_orders__element-delivery-status-${id}` }
         >
           {status}
         </div>
         <div
-          data-testid={ `customer_orders__element-order-date-${id}` }
+          data-testid={ `${role}_orders__element-order-date-${id}` }
         >
           {formattedDate}
         </div>
         <div
-          data-testid={ `customer_orders__element-card-price-${id}` }
+          data-testid={ `${role}_orders__element-card-price-${id}` }
         >
           R$
           {totalPrice.replace('.', ',')}
         </div>
+        {role === 'seller'
+          ? (
+            <div
+              data-testid={ `seller_orders__element-card-address-${id}` }
+            >
+              {`${deliveryAddress}, ${deliveryNumber}`}
+            </div>
+          )
+          : ''}
       </div>
     </Link>
   );
@@ -54,4 +64,6 @@ OrderCard.propTypes = ({
   totalPrice: PropTypes.any,
   date: PropTypes.any,
   role: PropTypes.any,
+  deliveryAddress: PropTypes.any,
+  deliveryNumber: PropTypes.any,
 }).isRequired;

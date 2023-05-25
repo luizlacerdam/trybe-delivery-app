@@ -12,8 +12,8 @@ const create = async (req, res, next) => {
 
 const findAll = async (req, res, next) => {
     try {
-        const { id } = req.body.user;
-        const data = await SaleService.findAll(id);
+        const { id, role } = req.body.user;
+        const data = await SaleService.findAll(id, role);
         return res.status(200).json({ data });
     } catch (error) {
         next(error);

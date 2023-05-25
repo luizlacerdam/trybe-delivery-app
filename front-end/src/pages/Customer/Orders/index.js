@@ -10,11 +10,22 @@ export default function Orders() {
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState();
 
+  const REDIRECT_PATHS = {
+    customer: '/customer/orders',
+    seller: '/seller/orders',
+    // administrator: '/admin/manage',
+  };
+
   async function getOrders() {
     const userLocal = getItem('user');
-    const { data } = await requestDataWithToken('/customer/orders', userLocal.token);
-    setOrders(data);
+
+    const { data } = await requestDataWithToken(
+      REDIRECT_PATHS[userLocal.role],
+      userLocal.token,
+    );
+
     setUser(userLocal);
+    setOrders(data);
     setLoaded(true);
   }
 
