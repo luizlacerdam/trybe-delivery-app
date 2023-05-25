@@ -6,16 +6,19 @@ import { requestDataWithToken } from '../../../services/requests';
 import { getItem } from '../../../utils/localStorageHandling';
 import Loading from '../../components/Loading';
 import TotalPrice from './components/TotalPrice';
+import Navbar from '../components/Navbar';
 
 export default function OrderDetails(props) {
   const [dataObj, setDataObj] = useState();
+  const [user, setUser] = useState();
   const [loaded, setLoaded] = useState(false);
   const { match } = props;
   const { id } = match.params;
 
   async function getOrder() {
-    const { token } = getItem('user');
-    const { data } = await requestDataWithToken(`/customer/orders/${id}`, token);
+    const localUser = getItem('user');
+    setUser(localUser);
+    const { data } = await requestDataWithToken(`/customer/orders/${id}`, localUser.token);
     setDataObj(data);
     setLoaded(true);
   }
@@ -26,9 +29,14 @@ export default function OrderDetails(props) {
 
   return (
     <div>
-      Detalhes do Pedido
+
       {loaded ? (
         <div>
+          <Navbar
+            username={ user.name }
+          />
+          Detalhes do Pedido
+
           <DetailsLabel
             id={ id }
             seller={ dataObj.seller.name }
