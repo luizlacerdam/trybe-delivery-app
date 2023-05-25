@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestLogin } from '../../../services/requests';
 import userContext from '../../../context/user/userContext';
 
-function Form({ setResError }) {
+function Form({ setResError, setUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -46,10 +46,7 @@ function Form({ setResError }) {
 
   const handleClick = async () => {
     const response = await login();
-
-    if (response) {
-      history.push('/customer/products');
-    }
+    setUser(response.user);
   };
 
   return (
@@ -95,6 +92,7 @@ function Form({ setResError }) {
 }
 Form.propTypes = ({
   setResError: PropTypes.any,
+  setUser: PropTypes.any,
 }).isRequired;
 
 export default Form;
