@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-export default function Navbar({ username }) {
+export default function Navbar({ username, role }) {
   const history = useHistory();
   const handleClick = () => {
     localStorage.clear();
     history.push('/login');
+  };
+  const REDIRECT_PATHS = {
+    customer: '/customer/orders',
+    seller: '/seller/orders',
+    // administrator: '/admin/manage',
   };
   return (
     <header>
@@ -22,7 +27,7 @@ export default function Navbar({ username }) {
       <div>
         <Link
           data-testid="customer_products__element-navbar-link-orders"
-          to="/customer/orders"
+          to={ REDIRECT_PATHS[role] }
         >
           PEDIDOS
         </Link>
@@ -47,4 +52,5 @@ export default function Navbar({ username }) {
 
 Navbar.propTypes = ({
   username: PropTypes.any,
+  role: PropTypes.any,
 }).isRequired;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Product from './components/Product';
-import { getLocalStorage } from '../../../utils/localStorageHandling';
+import { getItem, getLocalStorage } from '../../../utils/localStorageHandling';
 import Loading from '../../components/Loading';
 import DetalhesEntrega from './components/DetalhesEntrega';
 import { requestData } from '../../../services/requests';
 import TotalPrice from './components/TotalPrice';
 
 export default function CheckoutPage() {
+  const [user, setUser] = useState();
   const [cart, setCart] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [sellers, setSellers] = useState([]);
@@ -23,6 +24,8 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     const cartArr = getLocalStorage('cart');
+    const localUser = getItem('user');
+    setUser(localUser);
 
     const totalP = cartArr.reduce((acc, cur) => {
       const totalLocal = cur.price * cur.qty;
@@ -46,10 +49,14 @@ export default function CheckoutPage() {
 
   return (
     <div>
-      <Navbar />
-      <span>Finalizar Pedido</span>
-
+      {!loaded ? <Loading /> : (
+        <div>
+          <Navbar username={ user.name } role={ user.role } />
+          <span>Finalizar Pedido</span>
+        </div>
+      )}
       { !loaded ? <Loading /> : (
+
         cart.map(({ id, urlImage, price, title, qty }, index) => (
           <Product
             id={ id }
