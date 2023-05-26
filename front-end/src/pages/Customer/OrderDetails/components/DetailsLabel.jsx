@@ -6,7 +6,7 @@ import { getItem } from '../../../../utils/localStorageHandling';
 export default function DetailsLabel({ id, seller, status, date, role }) {
   const [delivered, setDelivered] = useState(false);
   const [localStatus, setLocalStatus] = useState();
-
+  const transit = 'Em Trânsito';
   const tes = `${role}_order_details__element-order-details-label-delivery-status-${id}`;
   const convertDate = new Date(date);
   const options = {
@@ -17,7 +17,7 @@ export default function DetailsLabel({ id, seller, status, date, role }) {
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
   useEffect(() => {
     setLocalStatus(status);
-    setDelivered(status !== 'Em Trânsito');
+    setDelivered(status !== transit);
   }, []);
 
   const REDIRECT_PATHS = {
@@ -43,9 +43,9 @@ export default function DetailsLabel({ id, seller, status, date, role }) {
         setLocalStatus('Preparando');
       }
     } else {
-      const { data } = await updateStatus('Em Trânsito');
+      const { data } = await updateStatus(transit);
       if (data.length > 0) {
-        setLocalStatus('Em Trânsito');
+        setLocalStatus(transit);
       }
     }
   }
