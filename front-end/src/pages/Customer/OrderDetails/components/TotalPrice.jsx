@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function TotalPrice({ totalPrice }) {
+export default function TotalPrice({ totalPrice, role }) {
   return (
     <div
-      data-testid="customer_order_details__element-order-total-price"
+      data-testid={ `${role}_order_details__element-order-total-price` }
     >
       {`Total: ${totalPrice.replace('.', ',')}`}
     </div>
@@ -13,4 +13,6 @@ export default function TotalPrice({ totalPrice }) {
 
 TotalPrice.propTypes = ({
   totalPrice: PropTypes.any,
+  role: PropTypes.any,
+
 }).isRequired;

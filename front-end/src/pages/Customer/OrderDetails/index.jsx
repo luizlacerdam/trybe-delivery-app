@@ -15,10 +15,20 @@ export default function OrderDetails(props) {
   const { match } = props;
   const { id } = match.params;
 
+  const REDIRECT_PATHS = {
+    customer: '/customer/orders',
+    seller: '/seller/orders',
+    // administrator: '/admin/manage',
+  };
+
   async function getOrder() {
     const localUser = getItem('user');
     setUser(localUser);
-    const { data } = await requestDataWithToken(`/customer/orders/${id}`, localUser.token);
+    const { data } = await requestDataWithToken(
+      `${REDIRECT_PATHS[localUser.role]}/${id}`,
+      localUser.token,
+    );
+
     setDataObj(data);
     setLoaded(true);
   }
@@ -39,6 +49,7 @@ export default function OrderDetails(props) {
 
           <DetailsLabel
             id={ id }
+            role={ user.role }
             seller={ dataObj.seller.name }
             status={ dataObj.order.status }
             date={ dataObj.order.saleDate }
@@ -50,7 +61,7 @@ export default function OrderDetails(props) {
             qty={ SaleProduct.quantity }
             price={ price }
           />))}
-          <TotalPrice totalPrice={ dataObj.order.totalPrice } />
+          <TotalPrice totalPrice={ dataObj.order.totalPrice } role={ user.role } />
         </div>
       ) : <Loading />}
     </div>

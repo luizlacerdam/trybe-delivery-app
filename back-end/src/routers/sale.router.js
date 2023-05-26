@@ -10,5 +10,7 @@ router.get('/customer/orders/:id', validateToken, SaleController.findByPk);
 router.patch('/customer/orders/:id', validateToken, SaleController.updateStatus);
 
 router.get('/seller/orders', validateToken, SaleController.findAll);
+router.get('/seller/orders/:id', validateToken, SaleController.findByPk);
+router.patch('/seller/orders/:id', validateToken, SaleController.updateStatus);
 
 module.exports = router;
