@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Loading from '../../components/Loading';
+
 import { getItem } from '../../../utils/localStorageHandling';
+import AddUser from './components/AddUser';
 
 export default function Gerenciamento() {
   const [user, setUser] = useState();
@@ -13,7 +15,12 @@ export default function Gerenciamento() {
   }, []);
   return (
     <div>
-      {loaded ? <Navbar role={ user.role } usernamer={ user.name } /> : <Loading />}
+      {loaded ? (
+        <div>
+          <Navbar role={ user.role } usernamer={ user.name } />
+          <AddUser />
+        </div>
+      ) : <Loading />}
 
     </div>
   );
