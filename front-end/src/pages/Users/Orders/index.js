@@ -37,6 +37,7 @@ export default function Orders() {
     <div>
       {loaded ? <Navbar
         username={ user.name }
+        role={ user.role }
       /> : <Loading />}
       {loaded ? orders.map(({
         id,

@@ -4,10 +4,10 @@ import './App.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Register from './pages/Register';
-import Products from './pages/Customer/Products';
-import CheckoutPage from './pages/Customer/Checkout';
-import Orders from './pages/Customer/Orders';
-import OrderDetails from './pages/Customer/OrderDetails';
+import Products from './pages/Users/Products';
+import CheckoutPage from './pages/Users/Checkout';
+import Orders from './pages/Users/Orders';
+import OrderDetails from './pages/Users/OrderDetails';
 
 function App() {
   return (

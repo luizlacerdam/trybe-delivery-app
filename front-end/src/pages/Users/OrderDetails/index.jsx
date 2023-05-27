@@ -44,6 +44,7 @@ export default function OrderDetails(props) {
         <div>
           <Navbar
             username={ user.name }
+            role={ user.role }
           />
           Detalhes do Pedido
 

@@ -16,21 +16,33 @@ export default function Navbar({ username, role }) {
   return (
     <header>
       <div>
-        <Link
-          data-testid="customer_products__element-navbar-link-products"
-          to="/customer/products"
-        >
-          PRODUTOS
+        {role === 'admin' ? (
+          <Link
+            data-testid="customer_products__element-navbar-link-orders"
+            to="/admin/manage"
+          >
+            GERENCIAR USUÁRIOS
+          </Link>
+        ) : (
+          <div>
+            <div>
+              <Link
+                data-testid="customer_products__element-navbar-link-products"
+                to="/customer/products"
+              >
+                PRODUTOS
+              </Link>
+            </div>
+            <div>
+              <Link
+                data-testid="customer_products__element-navbar-link-orders"
+                to={ REDIRECT_PATHS[role] }
+              >
+                PEDIDOS
+              </Link>
+            </div>
+          </div>)}
 
-        </Link>
-      </div>
-      <div>
-        <Link
-          data-testid="customer_products__element-navbar-link-orders"
-          to={ REDIRECT_PATHS[role] }
-        >
-          PEDIDOS
-        </Link>
       </div>
       <div
         data-testid="customer_products__element-navbar-user-full-name"
