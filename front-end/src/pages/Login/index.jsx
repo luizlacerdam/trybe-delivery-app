@@ -11,7 +11,7 @@ function Login() {
   const REDIRECT_PATHS = {
     customer: '/customer/products',
     seller: '/seller/orders',
-    // administrator: '/admin/manage',
+    administrator: '/admin/manage',
   };
   useEffect(() => {
     const localUser = getItem('user');

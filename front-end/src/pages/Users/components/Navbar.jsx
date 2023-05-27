@@ -16,7 +16,7 @@ export default function Navbar({ username, role }) {
   return (
     <header>
       <div>
-        {role === 'admin' ? (
+        {role === 'administrator' ? (
           <Link
             data-testid="customer_products__element-navbar-link-orders"
             to="/admin/manage"
