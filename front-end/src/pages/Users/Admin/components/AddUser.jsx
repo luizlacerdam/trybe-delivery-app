@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { requestPost } from '../../../../services/requests';
+import { requestPostWithToken } from '../../../../services/requests';
+import { getItem } from '../../../../utils/localStorageHandling';
 
 export default function AddUser() {
   const [name, setName] = useState('');
@@ -38,13 +39,14 @@ export default function AddUser() {
   }, [email, password, name, role]);
 
   const createUser = async () => {
+    const { token } = getItem('user');
     try {
-      const response = await requestPost('/register', {
+      const response = await requestPostWithToken('/administrator', {
         name,
         email,
         password,
         role,
-      });
+      }, token);
       return response;
     } catch (error) {
       console.log(error);
