@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
-const { loginRouter, userRouter, registerRouter, saleRouter } = require('../routers');
+const { loginRouter, userRouter, registerRouter, saleRouter, adminRouter } = require('../routers');
 const { errorMiddleware } = require('../middlewares/errorMiddleware');
 const { UserController } = require('../controllers');
 
@@ -15,6 +15,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/customer', userRouter);
 app.use('/', saleRouter);
+app.use('/administrator', adminRouter);
 
 app.get('/sellers', UserController.getSellers);
 app.get('/coffee', (_req, res) => res.status(418).end());
