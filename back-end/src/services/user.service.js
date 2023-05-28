@@ -4,15 +4,13 @@ const create = async (newUser) => User.create(newUser);
 
 const getByEmail = async (email) => User.findOne({ where: { email } });
 
-const login = async () => {
-    
-};
+const getByName = async (name) => User.findOne({ where: { name } });
 
 const getSellers = async () => User.findAll({ where: { role: 'seller' } });
 
 module.exports = {
     getByEmail,
     create,
-    login,
+    getByName,
     getSellers,
 };

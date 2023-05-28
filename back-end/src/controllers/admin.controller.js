@@ -10,8 +10,10 @@ const create = async (req, res, next) => {
         if (!isBodyValid(name, email, password)) {
             return res.status(400).json({ message: 'Some required fields are missing' });
         }
-        const user = await UserService.getByEmail(email);
-        if (user) { return res.status(409).json({ message: 'Email já cadastrado.' }); }
+        const userE = await UserService.getByEmail(email);
+        const userN = await UserService.getByName(name);
+        if (userE || userN) { return res.status(409).json({ message: 'Usuario já cadastrado.' }); }
+        
         const cryptoPass = hashMd5Encrypt(password); 
         const newUser = await UserService.create({ 
             name, email, password: cryptoPass, role });
