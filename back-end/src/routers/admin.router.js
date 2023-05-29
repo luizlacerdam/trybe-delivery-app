@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/manage', validateToken, AdminController.create);
 router.get('/manage', validateToken, AdminController.findAll);
+router.post('/manage/destroy', validateToken, AdminController.destroy);
 
 module.exports = router;

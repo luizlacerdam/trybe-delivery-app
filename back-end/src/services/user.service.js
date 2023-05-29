@@ -16,10 +16,13 @@ const findAll = async () => {
    });
 };
 
+const destroy = async (id) => User.destroy({ where: { id } });
+
 module.exports = {
     getByEmail,
     create,
     getByName,
     getSellers,
     findAll,
+    destroy,
 };

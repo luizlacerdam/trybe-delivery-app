@@ -6,12 +6,12 @@ import UserCard from './UserCard';
 
 export default function UserList() {
   const [loaded, setLoaded] = useState(false);
-  const [users, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
 
   async function getUsers() {
     const { token } = getItem('user');
     const response = await requestDataWithToken('/admin/manage', token);
-    setUser(response.users);
+    setUsers(response.users);
     setLoaded(true);
   }
 
@@ -24,9 +24,12 @@ export default function UserList() {
       {loaded ? users.map((user, key) => (<UserCard
         key={ key }
         index={ key }
+        id={ user.id }
         name={ user.name }
         email={ user.email }
         role={ user.role }
+        users={ users }
+        setUsers={ setUsers }
       />)) : <Loading />}
     </div>
   );

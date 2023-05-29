@@ -35,7 +35,18 @@ const findAll = async (req, res, next) => {
     }
 };
 
+const destroy = async (req, res, next) => {
+    try {
+        const { id } = req.body;
+        const data = await UserService.destroy(id);
+        return res.status(200).json({ data });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = { 
     create,
     findAll,
+    destroy,
  };
