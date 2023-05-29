@@ -19,6 +19,10 @@ export default function UserList() {
     getUsers();
   }, []);
 
+  useEffect(() => {
+    getUsers();
+  }, [users]);
+
   return (
     <div>
       {loaded ? users.map((user, key) => (<UserCard

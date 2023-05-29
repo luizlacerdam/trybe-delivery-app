@@ -14,6 +14,7 @@ export default function Gerenciamento() {
     setUser(localUser);
     setLoaded(true);
   }, []);
+
   return (
     <div>
       {loaded ? (
