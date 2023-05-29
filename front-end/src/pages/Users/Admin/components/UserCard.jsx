@@ -6,8 +6,7 @@ import { getItem } from '../../../../utils/localStorageHandling';
 export default function UserCard({ index, id, name, email, role, setUsers, users }) {
   async function removeUser() {
     const { token } = getItem('user');
-    const response = await requestPostWithToken('./admin/manage/remove', { id }, token);
-    console.log(response);
+    const response = await requestPostWithToken('./admin/manage/destroy', { id }, token);
     return response;
   }
 
