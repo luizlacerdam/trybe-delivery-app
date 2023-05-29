@@ -4,6 +4,7 @@ import Loading from '../../components/Loading';
 
 import { getItem } from '../../../utils/localStorageHandling';
 import AddUser from './components/AddUser';
+import UserList from './components/UserList';
 
 export default function Gerenciamento() {
   const [user, setUser] = useState();
@@ -19,6 +20,7 @@ export default function Gerenciamento() {
         <div>
           <Navbar role={ user.role } usernamer={ user.name } />
           <AddUser />
+          <UserList />
         </div>
       ) : <Loading />}
 
