@@ -41,7 +41,7 @@ export default function AddUser() {
   const createUser = async () => {
     const { token } = getItem('user');
     try {
-      const response = await requestPostWithToken('/administrator', {
+      const response = await requestPostWithToken('/admin/manage/', {
         name,
         email,
         password,

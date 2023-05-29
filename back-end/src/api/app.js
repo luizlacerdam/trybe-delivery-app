@@ -15,7 +15,7 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/customer', userRouter);
 app.use('/', saleRouter);
-app.use('/administrator', adminRouter);
+app.use('/admin', adminRouter);
 
 app.get('/sellers', UserController.getSellers);
 app.get('/coffee', (_req, res) => res.status(418).end());

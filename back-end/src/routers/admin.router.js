@@ -4,7 +4,7 @@ const { validateToken } = require('../middlewares/validateToken');
 
 const router = express.Router();
 
-router.post('/', validateToken, AdminController.create);
-router.get('/', validateToken, AdminController.findAll);
+router.post('/manage', validateToken, AdminController.create);
+router.get('/manage', validateToken, AdminController.findAll);
 
 module.exports = router;
