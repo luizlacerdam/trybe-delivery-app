@@ -64,7 +64,11 @@ export default function AddUser() {
   return (
     <div>
       <span>Cadastrar novo usuário</span>
-      <p>{res}</p>
+      <p
+        data-testid="admin_manage__element-invalid-register"
+      >
+        {res}
+      </p>
       <form>
         <label htmlFor="new-user-name">
           Nome
