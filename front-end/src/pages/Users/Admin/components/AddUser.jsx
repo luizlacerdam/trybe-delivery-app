@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 import { requestPostWithToken } from '../../../../services/requests';
 import { getItem } from '../../../../utils/localStorageHandling';
 
-export default function AddUser() {
+export default function AddUser({ setUsersLoaded }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,6 +59,7 @@ export default function AddUser() {
   const handleClick = async () => {
     const response = await createUser();
     if (response) {
+      setUsersLoaded(true);
       setRes('Usuário cadastrado com sucesso!');
     }
   };
@@ -128,3 +131,7 @@ export default function AddUser() {
     </div>
   );
 }
+
+AddUser.propTypes = ({
+  setUsersLoaded: PropTypes.any,
+}).isRequired;

@@ -1,6 +1,5 @@
 const { UserService } = require('../services');
 const { hashMd5Encrypt } = require('../utils/md5');
-const { tokenGenerator } = require('../utils/tokenRelated');
 
 const isBodyValid = (name, email, password) => name && email && password;
 
@@ -17,10 +16,11 @@ const create = async (req, res, next) => {
         const cryptoPass = hashMd5Encrypt(password); 
         const newUser = await UserService.create({ 
             name, email, password: cryptoPass, role });
+
         const userObj = { 
             id: newUser.id, name: newUser.name, email: newUser.email, role: newUser.role };
-        const token = tokenGenerator({ data: { ...userObj } });
-        return res.status(201).json({ token, user: { ...userObj } });
+        
+        return res.status(201).json({ user: { ...userObj } });
     } catch (err) {
         next(err);
     }
