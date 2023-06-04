@@ -3,7 +3,7 @@ const chaiHttp = require('chai-http');
 const sinon = require('sinon');
 const app = require('../../api/app');
 const { Product } = require('../../database/models');
-const { products } = require('../mocks/products');
+const { products, newProduct } = require('../mocks/products');
 
 const { expect } = chai;
 
@@ -24,5 +24,12 @@ chai.use(chaiHttp);
         .request(app).get('/customer/products/1');
         expect(chaihttpResponse.status).to.be.equal(200);
         expect(chaihttpResponse.body.product).to.be.deep.equal(products.allProducts[0]);
+    });
+    it('3. POST /customer/products adds new product', async function () {
+        sinon.stub(Product, 'create').resolves(products.allProducts[0]);
+        const chaihttpResponse = await chai
+        .request(app).post('/customer/products').send({ ...newProduct });
+        expect(chaihttpResponse.status).to.be.equal(201);
+        expect(chaihttpResponse.body.newProduct).to.be.deep.equal(products.allProducts[0]);
     });
 });
