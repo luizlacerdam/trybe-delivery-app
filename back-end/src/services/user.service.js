@@ -10,10 +10,7 @@ const getSellers = async () => User.findAll({ where: { role: 'seller' } });
 
 const findAll = async () => {
    const users = await User.findAll(); 
-   return users.map(({ dataValues }) => {
-    const { password, ...rest } = dataValues;
-    return rest;
-   });
+   return users.map(({ id, email, role }) => ({ id, email, role }));
 };
 
 const destroy = async (id) => User.destroy({ where: { id } });

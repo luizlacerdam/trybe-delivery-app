@@ -34,26 +34,33 @@ const allUsers = {
         name: 'Delivery App Admin',
         email: 'adm@deliveryapp.com',
         role: 'administrator',
+        password: 'a4c86edecc5aee06eff8fdeda69e0d04',
       },
       {
         id: 2,
         name: 'Fulana Pereira',
         email: 'fulana@deliveryapp.com',
         role: 'seller',
+        password: '3c28d2b0881bf46457a853e0b07531c6',
       },
       {
         id: 3,
         name: 'Cliente Zé Birita',
         email: 'zebirita@email.com',
         role: 'customer',
-      },
-      {
-        id: 4,
-        name: 'LASASIASASLKASPOAS',
-        email: 'iadsjoisdaj@isodjoiasd.com',
-        role: 'seller',
+        password: '1c37466c159755ce1fa181bd247cb925',
       },
     ],
+  };
+
+const adminLogin = {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IiLCJlbWFpbCI6ImFkbUBkZWxpdmVyeWFwcC5jb20ifSwiaWF0IjoxNjg2MDc1MjQ3LCJleHAiOjE2ODY2ODAwNDd9.5FRYyyhSXVnvStiKb1OVpSZDcAIVN2vzwslBEcnx0B0',
+    user: {
+      id: 1,
+      name: 'Delivery App Admin',
+      role: 'administrator',
+      email: 'adm@deliveryapp.com',
+    },
   };
 
 module.exports = { 
@@ -61,4 +68,5 @@ module.exports = {
     newUser, 
     newUserRes,
     allUsers,
+    adminLogin,
 };
