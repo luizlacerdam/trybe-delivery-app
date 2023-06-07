@@ -25,7 +25,7 @@ function Login() {
   }, [user]);
 
   return (
-    <div>
+    <div id="login-index">
       <Form setResError={ setResError } setUser={ setUser } />
       <div
         data-testid="common_login__element-invalid-email"

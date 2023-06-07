@@ -1,54 +1,60 @@
-.App {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
-  display: flex;
-  flex-direction: column;
+* {
   font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
-}
-
-.App > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
   font-weight: 900;
 }
 
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
+form {
+  align-items: center;
+  border: solid 1px #b1c2be;
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  justify-content: center;
+  padding: 1vw;
+  width: 75%;
 }
 
-@keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(5deg);
-  }
+label {
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes clink {
-
-  0% {
-    transform: rotate(-10deg);
-  }
-
-  50% {
-    transform: rotate(20deg);
-  }
-
-  100% {
-    transform: rotate(-10deg);
-  }
+#login-index {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
 }
+
+#login-button {
+  background: #036b52;
+  border-radius: 5px;
+  height: 5vh;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  width: 75%;
+}
+
+#registrar-button {
+  border: 2px solid #036b52;
+  border-radius: 10px;
+  height: 5vh;
+  width: 75%;
+
+}
+
+input {
+  border: 1px solid #001813;
+  height: 4vh;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  width: 65vw;
+}
+
+/* #input__password {
+  background: #fff;
+  border: 1px solid #001813;
+  border-radius: 5px;
+
+} */
