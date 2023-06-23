@@ -1,0 +1,56 @@
+form {
+  align-items: center;
+  border: solid 1px #b1c2be;
+  display: flex;
+  flex-direction: column;
+  height: 280px;
+  justify-content: center;
+
+  /* padding: 1vw; */
+  width: 300px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+#login-index {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+#login-button {
+  background: #036b52;
+  border-radius: 5px;
+  height: 35px;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  width: 225px;
+}
+
+#registrar-button {
+  border: 2px solid #036b52;
+  border-radius: 10px;
+  height: 35px;
+  width: 225px;
+
+}
+
+input {
+  border: 1px solid #001813;
+  height: 35px;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  width: 240px;
+}
+
+/* #input__password {
+    background: #fff;
+    border: 1px solid #001813;
+    border-radius: 5px;
+
+  } */

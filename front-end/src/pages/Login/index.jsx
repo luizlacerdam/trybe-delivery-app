@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './styles.css';
 import { useHistory } from 'react-router-dom';
 import Form from './components/Form';
 import { getItem } from '../../utils/localStorageHandling';
