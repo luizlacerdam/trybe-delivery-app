@@ -1,5 +1,63 @@
+/* stylelint-disable selector-max-specificity */
 * {
   font-family: sans-serif;
   font-weight: 900;
+}
+
+form {
+  align-items: center;
+  border: solid 1px #b1c2be;
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  justify-content: center;
+  width: 300px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+#index {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+#login-button, #registrar-button {
+  background: #036b52;
+  border-radius: 5px;
+  height: 35px;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  width: 225px;
+}
+
+#registrar-button {
+  border: 2px solid #036b52;
+  border-radius: 10px;
+  height: 35px;
+  width: 225px;
+
+}
+
+input {
+  border: 1px solid #001813;
+  height: 35px;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  width: 240px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 0;
+  margin-top: 20px;
+  text-align: center;
 }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './styles.css';
 import { useHistory } from 'react-router-dom';
 import Form from './components/Form';
 import { getItem } from '../../utils/localStorageHandling';
@@ -26,7 +25,7 @@ function Login() {
   }, [user]);
 
   return (
-    <div id="login-index">
+    <div id="index">
       <Form setResError={ setResError } setUser={ setUser } />
       <div
         data-testid="common_login__element-invalid-email"

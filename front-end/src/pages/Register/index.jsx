@@ -4,10 +4,11 @@ import RegisterForms from './components/RegisterForms';
 function Register() {
   const [resError, setResError] = useState();
   return (
-    <div>
+    <div id="index">
 
       <RegisterForms setResError={ setResError } />
       <div
+        className="error-message"
         data-testid="common_register__element-invalid_register"
       >
         {!resError ? '' : resError.response.data.message}
