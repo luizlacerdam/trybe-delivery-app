@@ -27,7 +27,7 @@ export default function ProductPage() {
   return (
     <div>
       <Navbar role={ localS.role } username={ localS.name } />
-      <section className="cards">
+      <section className="all-cards">
         { !loaded ? <Loading /> : (
           products.allProducts.map(({ id, urlImage, price, name }, index) => (
             <Card

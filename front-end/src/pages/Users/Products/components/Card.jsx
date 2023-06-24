@@ -3,25 +3,30 @@ import PropTypes from 'prop-types';
 import QtyButton from './QtyButton';
 
 export default function Card({ id, urlImage, price, title, setTotal, total }) {
-  console.log(total);
   return (
-    <div>
+    <div className="cards">
+
+      <div>
+        <img
+          className="card-img"
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ urlImage }
+          alt={ title }
+        />
+      </div>
+
       <div
+        className="card-title"
         data-testid={ `customer_products__element-card-title-${id}` }
       >
         {title}
       </div>
       <div
+        className="card-price"
         data-testid={ `customer_products__element-card-price-${id}` }
       >
+        R$
         {price.replace('.', ',')}
-      </div>
-      <div>
-        <img
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-          src={ urlImage }
-          alt={ title }
-        />
       </div>
 
       <QtyButton

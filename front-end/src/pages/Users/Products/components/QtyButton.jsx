@@ -58,7 +58,7 @@ export default function QtyButton({ id, price, title, urlImage, setTotal }) {
     setQty(+value);
   }
   return (
-    <div>
+    <div className="qty-button">
       <button
         data-testid={ `customer_products__button-card-rm-item-${id}` }
         type="button"

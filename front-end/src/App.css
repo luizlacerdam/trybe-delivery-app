@@ -61,3 +61,58 @@ input {
   text-align: center;
 }
 
+header {
+  background: #036b52;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.cards {
+  align-items: center;
+  border: 1px solid #b1c2be;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 250px;
+  justify-content: space-around;
+  margin-top: 30px;
+  width: 300px;
+}
+
+.card-img {
+  height: 150px;
+}
+
+.qty-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.qty-button > button {
+  background: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.5rem;
+  height: 34px;
+  width: 30px;
+}
+
+.qty-button > input {
+  border: 1px solid #001813;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  height: 30px;
+  text-align: center;
+  width: 50px;
+}
+
+.all-cards {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}

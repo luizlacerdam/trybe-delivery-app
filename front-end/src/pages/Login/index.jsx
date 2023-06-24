@@ -28,6 +28,7 @@ function Login() {
     <div id="index">
       <Form setResError={ setResError } setUser={ setUser } />
       <div
+        className="error-message"
         data-testid="common_login__element-invalid-email"
       >
         {!resError ? '' : resError.response.statusText}
