@@ -115,4 +115,32 @@ header {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin-bottom: 150px;
 }
+
+#checkout-button {
+  background: #036b52;
+  border: none;
+  border-radius: 5px;
+  bottom: 10vw;
+  color: #fff;
+  font-size: 1.5rem;
+  height: 60px;
+  margin-top: 20px;
+  position: fixed;
+  right: 45px;
+  width: 270px;
+}
+
+#menu-button {
+  background: #036b52;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  display: fixed;
+  font-size: 1.5rem;
+  height: 34px;
+  margin-top: 20px;
+  width: 100px;
+}
+

@@ -10,10 +10,12 @@ export default function CheckoutButton({ total }) {
       type="button"
       onClick={ () => { history.push('/customer/checkout'); } }
       disabled={ total === 0 }
+      id="checkout-button"
     >
       <div
         data-testid="customer_products__checkout-bottom-value"
       >
+        Ver Carrinho R$
         {total.toFixed(2).replace('.', ',')}
       </div>
 
