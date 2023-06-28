@@ -48,31 +48,33 @@ export default function CheckoutPage() {
   }, [cart]);
 
   return (
-    <div>
+    <div id="checkout-index">
       {!loaded ? <Loading /> : (
         <div>
           <Navbar username={ user.name } role={ user.role } />
-          <span>Finalizar Pedido</span>
         </div>
       )}
-      { !loaded ? <Loading /> : (
+      <div id="all-checkout-cards">
+        <span>Finalizar Pedido</span>
+        { !loaded ? <Loading /> : (
 
-        cart.map(({ id, urlImage, price, title, qty }, index) => (
-          <Product
-            id={ id }
-            index={ index }
-            urlImage={ urlImage }
-            qty={ qty }
-            price={ price }
-            title={ title }
-            key={ index }
-            cart={ cart }
-            setCart={ setCart }
-          />
-        ))
-      )}
+          cart.map(({ id, urlImage, price, title, qty }, index) => (
+            <Product
+              id={ id }
+              index={ index }
+              urlImage={ urlImage }
+              qty={ qty }
+              price={ price }
+              title={ title }
+              key={ index }
+              cart={ cart }
+              setCart={ setCart }
+            />
+          ))
+        )}
+      </div>
       {!loaded ? <Loading /> : (<TotalPrice total={ total } />)}
-      <span>Detalhes e Endereço para Entrega</span>
+      <span>Detalhes e endereço para entrega</span>
       <DetalhesEntrega sellers={ sellers } total={ total } cart={ cart } />
     </div>
   );

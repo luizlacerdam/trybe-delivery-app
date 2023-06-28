@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 export default function TotalPrice({ total }) {
   return (
-    <div>
-      Total: R$
-      {' '}
+    <div id="total-price-checkout">
       <span
         data-testid="customer_checkout__element-order-total-price"
       >
+        Total: R$
+        {' '}
         {total.toFixed(2).toString().replace('.', ',')}
       </span>
     </div>

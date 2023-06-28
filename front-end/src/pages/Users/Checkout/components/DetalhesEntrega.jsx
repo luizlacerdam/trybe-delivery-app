@@ -45,7 +45,7 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
   }
 
   return (
-    <div>
+    <div id="adress-detail">
       <select
         name=""
         id=""
@@ -63,12 +63,14 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
         type="text"
         value={ address }
         onChange={ handleAddress }
+        placeholder="Endereço"
       />
       <input
         data-testid="customer_checkout__input-address-number"
         type="number"
         value={ number }
         onChange={ handleNumber }
+        placeholder="Número"
       />
       <button
         type="button"
