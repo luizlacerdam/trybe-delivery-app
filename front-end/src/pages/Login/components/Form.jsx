@@ -69,7 +69,7 @@ function Form({ setResError, setUser }) {
           type="password"
           name="password"
           id="input__password"
-          placeholder="******"
+          placeholder="**********"
           onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>
@@ -80,7 +80,7 @@ function Form({ setResError, setUser }) {
         disabled={ isDisabled }
         onClick={ handleClick }
       >
-        Login
+        LOGIN
       </button>
       <button
         id="registrar-button"

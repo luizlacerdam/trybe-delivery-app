@@ -1,4 +1,6 @@
 /* stylelint-disable selector-max-specificity */
+
+/* stylelint-disable selector-max-specificity
 * {
   font-family: sans-serif;
   font-weight: 900;
@@ -228,4 +230,85 @@ header {
   margin-right: 5px;
   padding: 10px;
 }
+ */
 
+/* --------PC--------- */
+* {
+  font-family: sans-serif;
+
+  /* font-weight: 900; */
+}
+
+#index {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+form {
+  align-items: center;
+  background: white;
+  border: 1px solid #b1c2be;
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  justify-content: center;
+  width: 35vh;
+
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 2vh;
+  height: 25%;
+  margin-top: 2%;
+  width: 80%;
+}
+
+input {
+  border: 1px solid #001813;
+  border-radius: 5px;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 2vh;
+  height: 100%;
+  margin-bottom: 3%;
+  margin-top: 2%;
+}
+
+#login-button {
+  background: #036b52;
+  border-radius: 5px;
+
+  /* box-shadow: 4px 4px rgba(0, 0, 0, 0.25); */
+  color: white;
+  font-size: 2vh;
+  font-weight: 900;
+  height: 15%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  width: 80%;
+}
+
+#registrar-button {
+  border: 1px solid #036b52;
+  border-radius: 10px;
+
+  /* box-shadow: 4px 4px rgba(0, 0, 0, 0.25); */
+  color: #036b52;
+  font-size: 1.5vh;
+  height: 15%;
+  width: 80%;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 0;
+  margin-top: 20px;
+  text-align: center;
+}

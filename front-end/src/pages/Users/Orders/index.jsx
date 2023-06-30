@@ -13,7 +13,6 @@ export default function Orders() {
   const REDIRECT_PATHS = {
     customer: '/customer/orders',
     seller: '/seller/orders',
-    // administrator: '/admin/manage',
   };
 
   async function getOrders() {
