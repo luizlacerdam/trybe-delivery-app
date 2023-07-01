@@ -99,7 +99,7 @@ function RegisterForms({ setResError }) {
         type="button"
         onClick={ handleClick }
         disabled={ isDisabled }
-        id="registrar-button"
+        id="cadastrar-button"
       >
         CADASTRAR
       </button>

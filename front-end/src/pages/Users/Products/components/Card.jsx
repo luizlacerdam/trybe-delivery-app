@@ -5,7 +5,13 @@ import QtyButton from './QtyButton';
 export default function Card({ id, urlImage, price, title, setTotal, total }) {
   return (
     <div className="cards">
-
+      <div
+        className="card-price"
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
+        R$
+        {price.replace('.', ',')}
+      </div>
       <div>
         <img
           className="card-img"
@@ -14,29 +20,24 @@ export default function Card({ id, urlImage, price, title, setTotal, total }) {
           alt={ title }
         />
       </div>
+      <div className="product-card-down">
 
-      <div
-        className="card-title"
-        data-testid={ `customer_products__element-card-title-${id}` }
-      >
-        {title}
-      </div>
-      <div
-        className="card-price"
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        R$
-        {price.replace('.', ',')}
-      </div>
+        <div
+          className="card-title"
+          data-testid={ `customer_products__element-card-title-${id}` }
+        >
+          {title}
+        </div>
 
-      <QtyButton
-        id={ id }
-        urlImage={ urlImage }
-        price={ price }
-        title={ title }
-        setTotal={ setTotal }
-        total={ total }
-      />
+        <QtyButton
+          id={ id }
+          urlImage={ urlImage }
+          price={ price }
+          title={ title }
+          setTotal={ setTotal }
+          total={ total }
+        />
+      </div>
     </div>
   );
 }
