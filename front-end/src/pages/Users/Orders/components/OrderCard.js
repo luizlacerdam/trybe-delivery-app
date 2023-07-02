@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -14,38 +15,45 @@ export default function OrderCard({ id,
 
   return (
     <Link
-      className="order-card-link"
+      className="order-card"
       to={ `/${role}/orders/${id}` }
     >
-      <div className="order-card">
-        <label
-          htmlFor="order-id"
+      <label
+        htmlFor="order-id"
+      >
+        Pedido
+        <span
+          data-testid={ `${role}_orders__element-order-id-${id}` }
+          id="order-id"
         >
-          Pedido
-          <span
-            data-testid={ `${role}_orders__element-order-id-${id}` }
-            id="order-id"
-          >
-            {id}
-          </span>
-        </label>
+          {id}
+        </span>
+      </label>
+
+      <div
+        className="order-details"
+      >
         <div
-          className="order-card-status"
-          data-testid={ `${role}_orders__element-delivery-status-${id}` }
+          className="order-card-status-and-date-and-total"
         >
-          {status}
-        </div>
-        <div className="order-card-date-and-total">
           <div
-            data-testid={ `${role}_orders__element-order-date-${id}` }
+            className="order-card-status"
+            data-testid={ `${role}_orders__element-delivery-status-${id}` }
           >
-            {formattedDate}
+            {status}
           </div>
-          <div
-            data-testid={ `${role}_orders__element-card-price-${id}` }
-          >
-            R$
-            {totalPrice.replace('.', ',')}
+          <div className="order-card-date-and-total">
+            <div
+              data-testid={ `${role}_orders__element-order-date-${id}` }
+            >
+              {formattedDate}
+            </div>
+            <div
+              data-testid={ `${role}_orders__element-card-price-${id}` }
+            >
+              R$
+              {totalPrice.replace('.', ',')}
+            </div>
           </div>
         </div>
 
@@ -53,12 +61,15 @@ export default function OrderCard({ id,
           ? (
             <div
               data-testid={ `seller_orders__element-card-address-${id}` }
+              className="order-card-adress {
+                "
             >
               {`${deliveryAddress}, ${deliveryNumber}`}
             </div>
           )
           : ''}
       </div>
+
     </Link>
   );
 }
