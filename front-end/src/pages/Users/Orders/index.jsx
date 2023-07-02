@@ -33,29 +33,36 @@ export default function Orders() {
   }, []);
 
   return (
-    <div>
+    <div
+      className="orders-index"
+    >
       {loaded ? <Navbar
+        className="user-navbar"
         username={ user.name }
         role={ user.role }
       /> : <Loading />}
-      {loaded ? orders.map(({
-        id,
-        status, totalPrice,
-        saleDate,
-        deliveryAddress,
-        deliveryNumber,
-      }, key) => (
-        <OrderCard
-          key={ key }
-          id={ id }
-          status={ status }
-          totalPrice={ totalPrice }
-          date={ saleDate }
-          role={ user.role }
-          deliveryAddress={ deliveryAddress }
-          deliveryNumber={ deliveryNumber }
-        />
-      )) : <Loading />}
+      <div
+        id="all-orders-cards"
+      >
+        {loaded ? orders.map(({
+          id,
+          status, totalPrice,
+          saleDate,
+          deliveryAddress,
+          deliveryNumber,
+        }, key) => (
+          <OrderCard
+            key={ key }
+            id={ id }
+            status={ status }
+            totalPrice={ totalPrice }
+            date={ saleDate }
+            role={ user.role }
+            deliveryAddress={ deliveryAddress }
+            deliveryNumber={ deliveryNumber }
+          />
+        )) : <Loading />}
+      </div>
 
     </div>
   );

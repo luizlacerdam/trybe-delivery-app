@@ -14,36 +14,41 @@ export default function OrderCard({ id,
 
   return (
     <Link
+      className="order-card-link"
       to={ `/${role}/orders/${id}` }
     >
-      <div>
+      <div className="order-card">
         <label
           htmlFor="order-id"
         >
+          Pedido
           <span
             data-testid={ `${role}_orders__element-order-id-${id}` }
             id="order-id"
           >
             {id}
           </span>
-          Pedido
         </label>
         <div
+          className="order-card-status"
           data-testid={ `${role}_orders__element-delivery-status-${id}` }
         >
           {status}
         </div>
-        <div
-          data-testid={ `${role}_orders__element-order-date-${id}` }
-        >
-          {formattedDate}
+        <div className="order-card-date-and-total">
+          <div
+            data-testid={ `${role}_orders__element-order-date-${id}` }
+          >
+            {formattedDate}
+          </div>
+          <div
+            data-testid={ `${role}_orders__element-card-price-${id}` }
+          >
+            R$
+            {totalPrice.replace('.', ',')}
+          </div>
         </div>
-        <div
-          data-testid={ `${role}_orders__element-card-price-${id}` }
-        >
-          R$
-          {totalPrice.replace('.', ',')}
-        </div>
+
         {role === 'seller'
           ? (
             <div
