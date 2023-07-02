@@ -13,6 +13,12 @@ export default function OrderCard({ id,
   };
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
 
+  const divStyle = {
+    Entregue: { backgroundColor: '#EAF1EF' },
+    Pendente: { backgroundColor: '#FAFF00' },
+    Preparando: { backgroundColor: '#036B52' },
+  };
+
   return (
     <Link
       className="order-card"
@@ -39,6 +45,7 @@ export default function OrderCard({ id,
           <div
             className="order-card-status"
             data-testid={ `${role}_orders__element-delivery-status-${id}` }
+            style={ divStyle[status] }
           >
             {status}
           </div>

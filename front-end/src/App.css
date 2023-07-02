@@ -296,10 +296,10 @@ header {
   box-shadow: 4px 4px 4px 0  rgba(0, 0, 0, 0.25);
   color: inherit;
   display: flex;
-  height: 10vh;
-  justify-content: space-between;
+  height: 12vh;
+  justify-content: space-evenly;
   margin: 2%;
-  padding: 1%;
+  padding: 10px;
   text-decoration: none;
   width: 500px;
 }
@@ -336,7 +336,7 @@ header {
   border-radius: 8px;
   display: flex;
   font-weight: 900;
-  height: 8vh;
+  height: 10vh;
   justify-content: center;
   margin: 1%;
   margin-right: 10px;
