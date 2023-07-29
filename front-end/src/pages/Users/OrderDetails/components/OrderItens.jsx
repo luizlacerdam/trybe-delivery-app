@@ -1,35 +1,53 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function OrderItens({ index, name, qty, price }) {
+export default function OrderItens({ index, name, qty, price, urlImage }) {
   const subTotal = (qty * price).toFixed(2);
   return (
-    <div>
-      <div
-        data-testid={ `customer_order_details__element-order-table-item-number-${index}` }
-      >
-        {index + 1}
+    <div className="checkout-card">
+      <img
+        src={ urlImage }
+        className="checkout-image"
+        alt="Imagem do produto"
+      />
+      <div className="checkout-card-props">
+
+        <div
+          data-testid={ `customer_order_details__element-order-table-name-${index}` }
+        >
+          {name}
+        </div>
+        <div
+          data-testid={ `customer_order_details__element-order-table-quantity-${index}` }
+        >
+          Qty:
+          {' '}
+          {qty}
+        </div>
+        <div className="checkout-card-value-details">
+
+          <div
+            data-testid={
+              `customer_order_details__element-order-table-unit-price-${index}`
+            }
+          >
+            V. Unitário:
+            R$
+            {price.replace('.', ',')}
+          </div>
+          <div
+            data-testid={
+              `customer_order_details__element-order-table-sub-total-${index}`
+            }
+          >
+            V. Subtotal:
+            R$
+            {subTotal.toString().replace('.', ',')}
+          </div>
+        </div>
+
       </div>
-      <div
-        data-testid={ `customer_order_details__element-order-table-name-${index}` }
-      >
-        {name}
-      </div>
-      <div
-        data-testid={ `customer_order_details__element-order-table-quantity-${index}` }
-      >
-        {qty}
-      </div>
-      <div
-        data-testid={ `customer_order_details__element-order-table-unit-price-${index}` }
-      >
-        {price.replace('.', ',')}
-      </div>
-      <div
-        data-testid={ `customer_order_details__element-order-table-sub-total-${index}` }
-      >
-        {subTotal.toString().replace('.', ',')}
-      </div>
+
     </div>
   );
 }
@@ -40,4 +58,5 @@ OrderItens.propTypes = ({
   qty: PropTypes.any,
   price: PropTypes.any,
   index: PropTypes.any,
+  urlImage: PropTypes.any,
 }).isRequired;

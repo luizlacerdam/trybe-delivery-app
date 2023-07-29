@@ -231,7 +231,7 @@ header {
   width: 50px;
 }
 
-#all-checkout-cards {
+.all-checkout-cards {
   align-items: center;
   display: flex;
   flex-direction: column;

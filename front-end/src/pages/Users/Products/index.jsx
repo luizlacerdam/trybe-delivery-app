@@ -13,7 +13,6 @@ export default function ProductPage() {
   const [loaded, setLoaded] = useState(false);
   const localS = getLocalStorage('user');
   useEffect(() => {
-    console.log('Refresh index');
   }, [total]);
   useEffect(() => {
     const getProductsList = async () => {

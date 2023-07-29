@@ -48,13 +48,13 @@ export default function CheckoutPage() {
   }, [cart]);
 
   return (
-    <div id="checkout-index">
+    <div className="page-index">
       {!loaded ? <Loading /> : (
         <div>
           <Navbar username={ user.name } role={ user.role } />
         </div>
       )}
-      <div id="all-checkout-cards">
+      <div className="all-checkout-cards">
         <span>Finalizar Pedido</span>
         { !loaded ? <Loading /> : (
 

@@ -23,7 +23,6 @@ export default function DetailsLabel({ id, seller, status, date, role }) {
   const REDIRECT_PATHS = {
     customer: '/customer/orders',
     seller: '/seller/orders',
-    // administrator: '/admin/manage',
   };
 
   async function updateStatus(statusParam) {

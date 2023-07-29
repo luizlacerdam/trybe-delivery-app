@@ -32,7 +32,6 @@ export default function QtyButton({ id, price, title, urlImage, setTotal }) {
   }, []);
 
   useEffect(() => {
-    console.log('log do qty');
     const cartArr = getLocalStorage('cart');
     if (qty > 0) {
       const novoArr = setStorageArray(cartArr, product, 'cart');

@@ -18,7 +18,6 @@ export default function OrderDetails(props) {
   const REDIRECT_PATHS = {
     customer: '/customer/orders',
     seller: '/seller/orders',
-    // administrator: '/admin/manage',
   };
 
   async function getOrder() {
@@ -38,7 +37,7 @@ export default function OrderDetails(props) {
   }, []);
 
   return (
-    <div>
+    <div className="page-index">
 
       {loaded ? (
         <div>
@@ -55,13 +54,18 @@ export default function OrderDetails(props) {
             status={ dataObj.order.status }
             date={ dataObj.order.saleDate }
           />
-          {dataObj.order.products.map(({ name, price, SaleProduct }, key) => (<OrderItens
-            key={ key }
-            index={ key }
-            name={ name }
-            qty={ SaleProduct.quantity }
-            price={ price }
-          />))}
+          <div className="all-checkout-cards">
+            {dataObj.order.products.map(({ name, price, SaleProduct, urlImage }, key) => (
+              <OrderItens
+                key={ key }
+                index={ key }
+                name={ name }
+                qty={ SaleProduct.quantity }
+                price={ price }
+                urlImage={ urlImage }
+              />))}
+          </div>
+
           <TotalPrice totalPrice={ dataObj.order.totalPrice } role={ user.role } />
         </div>
       ) : <Loading />}
