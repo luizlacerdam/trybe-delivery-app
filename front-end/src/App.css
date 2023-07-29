@@ -239,6 +239,14 @@ header {
   width: 100%;
 }
 
+.total-price-checkout > span {
+  background: #036b52;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  padding: 10px;
+}
+
 #all-checkout-cards > span {
   align-self: flex-start;
   display: flex;
@@ -267,20 +275,12 @@ header {
   height: 40px;
 }
 
-#total-price-checkout {
+.total-price-checkout {
   color: white;
   display: flex;
   justify-content: end;
   margin-bottom: 20px;
   width: 100%;
-}
-
-#total-price-checkout > span {
-  background: #036b52;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  padding: 10px;
 }
 
 #all-orders-cards {

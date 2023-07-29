@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function TotalPrice({ total }) {
   return (
-    <div id="total-price-checkout">
+    <div className="total-price-checkout">
       <span
         data-testid="customer_checkout__element-order-total-price"
       >

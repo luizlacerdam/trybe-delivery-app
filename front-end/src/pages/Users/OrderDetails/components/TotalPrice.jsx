@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 
 export default function TotalPrice({ totalPrice, role }) {
   return (
-    <div
-      data-testid={ `${role}_order_details__element-order-total-price` }
-    >
-      {`Total: ${totalPrice.replace('.', ',')}`}
+    <div className="total-price-checkout">
+      <span
+        data-testid={ `${role}_order_details__element-order-total-price` }
+      >
+        Total: R$
+        {' '}
+        {totalPrice.replace('.', ',')}
+      </span>
     </div>
+
   );
 }
 

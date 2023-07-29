@@ -66,7 +66,8 @@ export default function OrderDetails(props) {
               />))}
           </div>
 
-          <TotalPrice totalPrice={ dataObj.order.totalPrice } role={ user.role } />
+          {!loaded ? <Loading /> : (
+            <TotalPrice totalPrice={ dataObj.order.totalPrice } role={ user.role } />)}
         </div>
       ) : <Loading />}
     </div>
