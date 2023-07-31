@@ -74,8 +74,10 @@ export default function CheckoutPage() {
         )}
       </div>
       {!loaded ? <Loading /> : (<TotalPrice total={ total } />)}
-      <span>Detalhes e endereço para entrega</span>
-      <DetalhesEntrega sellers={ sellers } total={ total } cart={ cart } />
+      <div className="adress-detail">
+        <span>Detalhes e endereço para entrega</span>
+        <DetalhesEntrega sellers={ sellers } total={ total } cart={ cart } />
+      </div>
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
   }
 
   return (
-    <div id="adress-detail">
+    <div>
       <select
         name=""
         id=""
