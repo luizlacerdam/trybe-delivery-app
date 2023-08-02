@@ -112,6 +112,7 @@ export default function DetailsLabel({
       {role === 'customer' ? (
         <div>
           <button
+            className="details-order-button-delivery-check"
             data-testid={ `${role}_order_details__button-delivery-check` }
             type="button"
             disabled={ delivered }
@@ -127,6 +128,7 @@ export default function DetailsLabel({
             data-testid="seller_order_details__button-preparing-check"
             onClick={ handleClickSeller }
             disabled={ localStatus !== 'Pendente' }
+            className="details-order-button-preparing-check"
           >
             PREPARAR PEDIDO
           </button>
@@ -135,6 +137,7 @@ export default function DetailsLabel({
             data-testid="seller_order_details__button-dispatch-check"
             onClick={ handleClickSeller }
             disabled={ localStatus !== 'Preparando' }
+            className="details-order-button-dispatch-check"
           >
             SAIU PARA ENTREGA
           </button>
