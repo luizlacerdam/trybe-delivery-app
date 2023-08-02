@@ -8,7 +8,6 @@ export default function DetailsLabel({
   const [delivered, setDelivered] = useState(false);
   const [localStatus, setLocalStatus] = useState();
   const transit = 'Em Trânsito';
-  const tes = `${role}_order_details__element-order-details-label-delivery-status-${id}`;
   const convertDate = new Date(date);
   const options = {
     day: '2-digit',
@@ -59,9 +58,9 @@ export default function DetailsLabel({
   }
 
   const divStyle = {
-    Entregue: { backgroundColor: '#EAF1EF' },
-    Pendente: { backgroundColor: '#FAFF00' },
-    Preparando: { backgroundColor: '#036B52' },
+    Pendente: { backgroundColor: '#0072FF' },
+    Preparando: { backgroundColor: '#FFAA00' },
+    Entregue: { backgroundColor: '#036B52' },
   };
 
   return (
@@ -83,9 +82,9 @@ export default function DetailsLabel({
           <div
             className="order-card-status"
             data-testid={ `${role}_orders__element-delivery-status-${id}` }
-            style={ divStyle[status] }
+            style={ divStyle[localStatus] }
           >
-            {status}
+            {localStatus}
           </div>
           <div
             className="order-card-date-and-total"
@@ -112,11 +111,6 @@ export default function DetailsLabel({
 
       {role === 'customer' ? (
         <div>
-          <div
-            data-testid={ tes }
-          >
-            {localStatus}
-          </div>
           <button
             data-testid={ `${role}_order_details__button-delivery-check` }
             type="button"
@@ -128,11 +122,6 @@ export default function DetailsLabel({
         </div>
       ) : (
         <div>
-          <div
-            data-testid={ tes }
-          >
-            {localStatus}
-          </div>
           <button
             type="button"
             data-testid="seller_order_details__button-preparing-check"
@@ -161,4 +150,6 @@ DetailsLabel.propTypes = ({
   status: PropTypes.any,
   date: PropTypes.any,
   role: PropTypes.any,
+  deliveryAddress: PropTypes.any,
+  deliveryNumber: PropTypes.any,
 }).isRequired;

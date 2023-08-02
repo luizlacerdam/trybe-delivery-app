@@ -14,9 +14,9 @@ export default function OrderCard({ id,
   const formattedDate = convertDate.toLocaleDateString('en-GB', options);
 
   const divStyle = {
-    Entregue: { backgroundColor: '#EAF1EF' },
-    Pendente: { backgroundColor: '#FAFF00' },
-    Preparando: { backgroundColor: '#036B52' },
+    Pendente: { backgroundColor: '#0072FF' },
+    Preparando: { backgroundColor: '#FFAA00' },
+    Entregue: { backgroundColor: '#036B52' },
   };
 
   return (
@@ -24,54 +24,59 @@ export default function OrderCard({ id,
       className="order-card"
       to={ `/${role}/orders/${id}` }
     >
-      <label
-        htmlFor="order-id"
-      >
-        Pedido
-        <span
-          data-testid={ `${role}_orders__element-order-id-${id}` }
-          id="order-id"
-        >
-          {id}
-        </span>
-      </label>
+      <div className="order-card-row">
 
-      <div
-        className="order-details"
-      >
+        <label
+          htmlFor="order-id"
+        >
+          Pedido
+          <span
+            data-testid={ `${role}_orders__element-order-id-${id}` }
+            id="order-id"
+          >
+            {id}
+          </span>
+        </label>
+
         <div
-          className="order-card-status-and-date-and-total"
+          className="order-details"
         >
           <div
-            className="order-card-status"
-            data-testid={ `${role}_orders__element-delivery-status-${id}` }
-            style={ divStyle[status] }
+            className="order-card-status-and-date-and-total"
           >
-            {status}
-          </div>
-          <div className="order-card-date-and-total">
             <div
-              data-testid={ `${role}_orders__element-order-date-${id}` }
+              className="order-card-status"
+              data-testid={ `${role}_orders__element-delivery-status-${id}` }
+              style={ divStyle[status] }
             >
-              {formattedDate}
+              {status}
             </div>
-            <div
-              data-testid={ `${role}_orders__element-card-price-${id}` }
-            >
-              R$
-              {totalPrice.replace('.', ',')}
+            <div className="order-card-date-and-total">
+              <div
+                data-testid={ `${role}_orders__element-order-date-${id}` }
+              >
+                {formattedDate}
+              </div>
+              <div
+                data-testid={ `${role}_orders__element-card-price-${id}` }
+              >
+                R$
+                {totalPrice.replace('.', ',')}
+              </div>
             </div>
           </div>
+
         </div>
+      </div>
+      <div>
 
         {role === 'seller'
           ? (
             <div
               data-testid={ `seller_orders__element-card-address-${id}` }
-              className="order-card-adress {
-                "
+              className="order-card-adress"
             >
-              {`${deliveryAddress}, ${deliveryNumber}`}
+              {`${deliveryAddress}, ${deliveryNumber}.`}
             </div>
           )
           : ''}
