@@ -46,14 +46,18 @@ export default function OrderDetails(props) {
             role={ user.role }
           />
           Detalhes do Pedido
+          <div className="details-label">
+            <DetailsLabel
+              id={ id }
+              role={ user.role }
+              seller={ dataObj.seller.name }
+              status={ dataObj.order.status }
+              date={ dataObj.order.saleDate }
+              deliveryAddress={ dataObj.order.deliveryAddress }
+              deliveryNumber={ dataObj.order.deliveryNumber }
+            />
+          </div>
 
-          <DetailsLabel
-            id={ id }
-            role={ user.role }
-            seller={ dataObj.seller.name }
-            status={ dataObj.order.status }
-            date={ dataObj.order.saleDate }
-          />
           <div className="all-checkout-cards">
             {dataObj.order.products.map(({ name, price, SaleProduct, urlImage }, key) => (
               <OrderItens

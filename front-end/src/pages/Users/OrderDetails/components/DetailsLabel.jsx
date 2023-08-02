@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { requestPatchWithToken } from '../../../../services/requests';
 import { getItem } from '../../../../utils/localStorageHandling';
 
-export default function DetailsLabel({ id, seller, status, date, role }) {
+export default function DetailsLabel({
+  id, seller, status, date, role, deliveryAddress, deliveryNumber }) {
   const [delivered, setDelivered] = useState(false);
   const [localStatus, setLocalStatus] = useState();
   const transit = 'Em Trânsito';
@@ -57,15 +58,45 @@ export default function DetailsLabel({ id, seller, status, date, role }) {
     }
   }
 
+  const divStyle = {
+    Entregue: { backgroundColor: '#EAF1EF' },
+    Pendente: { backgroundColor: '#FAFF00' },
+    Preparando: { backgroundColor: '#036B52' },
+  };
+
   return (
     <div>
-      <div>
-        <div
-          data-testid={ `${role}_order_details__element-order-details-label-order-id` }
-        >
-          {id}
+      <div className="details-order-order-card">
+        <div className="details-order-details">
+          <label
+            htmlFor="order-id"
+          >
+            Pedido
+            <span
+              data-testid={
+                `${role}_order_details__element-order-details-label-order-id`
+              }
+            >
+              {id}
+            </span>
+          </label>
+          <div
+            className="order-card-status"
+            data-testid={ `${role}_orders__element-delivery-status-${id}` }
+            style={ divStyle[status] }
+          >
+            {status}
+          </div>
+          <div
+            className="order-card-date-and-total"
+            data-testid={
+              `${role}_order_details__element-order-details-label-order-date`
+            }
+          >
+            {formattedDate}
+          </div>
         </div>
-        {role === 'customer' ? (
+        <div className="details-order-address-and-seller">
           <div
             data-testid={
               `${role}_order_details__element-order-details-label-seller-name`
@@ -73,14 +104,12 @@ export default function DetailsLabel({ id, seller, status, date, role }) {
           >
             {`P. Vend: ${seller}`}
           </div>
-        ) : ' '}
-        <div
-          data-testid={ `${role}_order_details__element-order-details-label-order-date` }
-        >
-          {formattedDate}
+          <div>
+            {`${deliveryAddress}, nº ${deliveryNumber}.`}
+          </div>
         </div>
-
       </div>
+
       {role === 'customer' ? (
         <div>
           <div
