@@ -12,6 +12,15 @@ export default function UserFilter({ users, setFilteredUsers }) {
     setFilteredUsers(newUsers);
   }
 
+  function handleRole({ target: { value } }) {
+    if (value === 'all') {
+      setFilteredUsers(users);
+      return;
+    }
+    const newUsers = users.filter((user) => user.role.includes(value));
+    setFilteredUsers(newUsers);
+  }
+
   return (
 
     <form id="user-manage-filter">
@@ -35,6 +44,7 @@ export default function UserFilter({ users, setFilteredUsers }) {
         Filtrar por cargo:
         <select
           name="role"
+          onChange={ handleRole }
         >
           <option value="all">Todos</option>
           <option value="seller">Vendedor</option>
