@@ -45,16 +45,20 @@ export default function Gerenciamento() {
               setUsersLoaded={ setUsersLoaded }
               usersLoaded={ usersLoaded }
             />
-            {users.map(({ id, name, email, role }, key) => (<UserCard
-              key={ key }
-              index={ key }
-              id={ id }
-              name={ name }
-              email={ email }
-              role={ role }
-              users={ users }
-              setUsers={ setUsers }
-            />))}
+            <div className="user-painel">
+
+              {users.map(({ id, name, email, role }, key) => (<UserCard
+                key={ key }
+                index={ key }
+                id={ id }
+                name={ name }
+                email={ email }
+                role={ role }
+                users={ users }
+                setUsers={ setUsers }
+              />))}
+            </div>
+
           </div>
 
         </div>

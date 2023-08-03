@@ -16,7 +16,7 @@ export default function UserCard({ index, id, name, email, role, setUsers, users
     setUsers(newUsers);
   }
   return (
-    <div>
+    <div className="users-card">
       <div
         data-testid={ `admin_manage__element-user-table-item-number-${index}` }
       >

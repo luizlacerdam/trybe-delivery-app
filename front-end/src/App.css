@@ -480,19 +480,19 @@ header {
 }
 
 #add-new-user-form {
+  align-self: center;
   display: flex;
   flex-flow: row wrap;
   flex-direction: row;
   height: 380px;
   justify-content: space-evenly;
   margin-bottom: 30px;
-  width: 80vw;
+  width: 300px;
 }
 
 #add-new-user-form > label {
   max-height: 65px;
-  max-width: 300px;
-  min-width: 250px;
+  width: 250px;
 }
 
 #add-new-user-form > label > select {
@@ -521,4 +521,26 @@ header {
 .add-user-component > span {
   font-size: 30px;
   margin-bottom: 20px;
+}
+
+.user-painel {
+  border: 1px solid #b1c2be;
+  box-shadow: 4px 4px 4px 0  rgba(0, 0, 0, 0.25);
+  color: inherit;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  height: 800px;
+  justify-content: space-evenly;
+  text-decoration: none;
+  width: 80vw;
+}
+
+.users-card {
+  border: 1px solid #b1c2be;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  padding: 10px;
+  width: 200px;
 }
