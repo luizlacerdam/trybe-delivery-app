@@ -6,6 +6,7 @@ import { getItem } from '../../../utils/localStorageHandling';
 import AddUser from './components/AddUser';
 import { requestDataWithToken } from '../../../services/requests';
 import UserCard from './components/UserCard';
+import UserFilter from './components/UserFilter';
 
 export default function Gerenciamento() {
   const [user, setUser] = useState();
@@ -45,6 +46,8 @@ export default function Gerenciamento() {
               setUsersLoaded={ setUsersLoaded }
               usersLoaded={ usersLoaded }
             />
+            <span>Gerenciamento de Usuários</span>
+            <UserFilter />
             <div className="user-painel">
 
               {users.map(({ id, name, email, role }, key) => (<UserCard

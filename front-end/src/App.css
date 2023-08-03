@@ -547,3 +547,36 @@ header {
   padding: 10px;
   width: 220px;
 }
+
+#user-manage-filter {
+  align-items: baseline;
+  align-self: center;
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  height: 100px;
+  justify-content: space-evenly;
+  margin-bottom: 30px;
+  padding: 10px;
+  width: 80vw;
+}
+
+#user-manage-filter > label {
+  max-height: 65px;
+  width: 250px;
+}
+
+@media screen and ( max-width : 950px ) {
+
+  #user-manage-filter {
+    align-items: center;
+    flex-direction: column;
+    height: 300px;
+  }
+}
+
+#user-manage-filter > label > select {
+  margin-top: 5px;
+  max-width: 200px;
+}
+
