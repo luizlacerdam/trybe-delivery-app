@@ -13,6 +13,7 @@ export default function Gerenciamento() {
   const [loaded, setLoaded] = useState(false);
   const [usersLoaded, setUsersLoaded] = useState(false);
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   async function getUsers() {
     const { token } = getItem('user');
@@ -26,12 +27,16 @@ export default function Gerenciamento() {
     getUsers().then((response) => {
       setUser(localUser);
       setUsers(response.users);
+      setFilteredUsers(response.users);
+
       setLoaded(true);
     });
   }, []);
   useEffect(() => {
     getUsers().then((response) => {
       setUsers(response.users);
+      setFilteredUsers(response.users);
+
       setUsersLoaded(false);
       setLoaded(true);
     });
@@ -47,10 +52,15 @@ export default function Gerenciamento() {
               usersLoaded={ usersLoaded }
             />
             <span>Gerenciamento de Usuários</span>
-            <UserFilter />
+            <UserFilter
+              users={ users }
+              setUsers={ setUsers }
+              setFilteredUsers={ setFilteredUsers }
+              filteredUsers={ filteredUsers }
+            />
             <div className="user-painel">
 
-              {users.map(({ id, name, email, role }, key) => (<UserCard
+              {filteredUsers.map(({ id, name, email, role }, key) => (<UserCard
                 key={ key }
                 index={ key }
                 id={ id }

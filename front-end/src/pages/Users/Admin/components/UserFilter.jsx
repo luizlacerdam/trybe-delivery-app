@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function UserFilter() {
+export default function UserFilter({ users, setFilteredUsers }) {
+  function handleName({ target: { value } }) {
+    const newUsers = users.filter((user) => user.name.includes(value));
+    setFilteredUsers(newUsers);
+  }
+
+  function handleEmail({ target: { value } }) {
+    const newUsers = users.filter((user) => user.email.includes(value));
+    setFilteredUsers(newUsers);
+  }
+
   return (
 
     <form id="user-manage-filter">
@@ -10,6 +20,7 @@ export default function UserFilter() {
         <input
           type="text"
           name="name"
+          onChange={ handleName }
         />
       </label>
       <label htmlFor="email">
@@ -17,6 +28,7 @@ export default function UserFilter() {
         <input
           type="text"
           name="email"
+          onChange={ handleEmail }
         />
       </label>
       <label htmlFor="role">
@@ -34,3 +46,7 @@ export default function UserFilter() {
 
   );
 }
+UserFilter.propTypes = ({
+  users: PropTypes.any,
+  setUsers: PropTypes.any,
+}).isRequired;
