@@ -65,14 +65,14 @@ export default function AddUser({ setUsersLoaded }) {
   };
 
   return (
-    <div>
+    <div className="add-user-component">
       <span>Cadastrar novo usuário</span>
       <p
         data-testid="admin_manage__element-invalid-register"
       >
         {res}
       </p>
-      <form>
+      <form id="add-new-user-form">
         <label htmlFor="new-user-name">
           Nome
           <input
@@ -123,7 +123,7 @@ export default function AddUser({ setUsersLoaded }) {
           type="button"
           onClick={ handleClick }
           disabled={ isDisabled }
-
+          className="addUser-button"
         >
           CADASTRAR
         </button>

@@ -40,20 +40,23 @@ export default function Gerenciamento() {
       {loaded ? (
         <div>
           <Navbar role={ user.role } usernamer={ user.name } />
-          <AddUser
-            setUsersLoaded={ setUsersLoaded }
-            usersLoaded={ usersLoaded }
-          />
-          {users.map(({ id, name, email, role }, key) => (<UserCard
-            key={ key }
-            index={ key }
-            id={ id }
-            name={ name }
-            email={ email }
-            role={ role }
-            users={ users }
-            setUsers={ setUsers }
-          />))}
+          <div className="admin-painel-index">
+            <AddUser
+              setUsersLoaded={ setUsersLoaded }
+              usersLoaded={ usersLoaded }
+            />
+            {users.map(({ id, name, email, role }, key) => (<UserCard
+              key={ key }
+              index={ key }
+              id={ id }
+              name={ name }
+              email={ email }
+              role={ role }
+              users={ users }
+              setUsers={ setUsers }
+            />))}
+          </div>
+
         </div>
       ) : <Loading />}
 
