@@ -20,21 +20,29 @@ export default function UserCard({ index, id, name, email, role, setUsers, users
       <div
         data-testid={ `admin_manage__element-user-table-item-number-${index}` }
       >
-        {index + 1}
+        Id:
+        {' '}
+        {id}
       </div>
       <div
         data-testid={ `admin_manage__element-user-table-name-${index}` }
       >
+        Nome:
+        {' '}
         {name}
       </div>
       <div
         data-testid={ `admin_manage__element-user-table-email-${index}` }
       >
+        Email:
+        {' '}
         {email}
       </div>
       <div
         data-testid={ `admin_manage__element-user-table-role-${index}` }
       >
+        Role:
+        {' '}
         {role}
       </div>
       <div>
