@@ -33,7 +33,11 @@ const getSellers = async (req, res, next) => {
     }
 };
 
+const userValidation = async (req, res) => 
+res.status(200).json({ message: 'Validado com sucesso' });
+
 module.exports = { 
     create,
     getSellers,
+    userValidation,
  };
