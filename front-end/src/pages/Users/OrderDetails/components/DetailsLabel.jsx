@@ -122,7 +122,7 @@ export default function DetailsLabel({
           </button>
         </div>
       ) : (
-        <div>
+        <div className="details-order-seller-button">
           <button
             type="button"
             data-testid="seller_order_details__button-preparing-check"

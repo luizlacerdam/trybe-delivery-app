@@ -443,6 +443,13 @@ header {
   justify-content: center;
 }
 
+.details-label > div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .order-details-page-index {
   align-items: center;
   display: flex;
@@ -450,6 +457,13 @@ header {
 }
 
 .details-order-customer-button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.details-order-seller-button {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -474,7 +488,8 @@ header {
   font-size: 30px;
   height: 40px;
   margin-top: 20px;
-  width: 100%;
+  max-width: 500px;
+  width: 80%;
 }
 
 .details-order-button-dispatch-check {
@@ -484,7 +499,8 @@ header {
   font-size: 30px;
   height: 40px;
   margin-top: 20px;
-  width: 100%;
+  max-width: 500px;
+  width: 80%;
 }
 
 #add-new-user-form {
