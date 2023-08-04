@@ -110,7 +110,7 @@ export default function DetailsLabel({
       </div>
 
       {role === 'customer' ? (
-        <div>
+        <div className="details-order-customer-button">
           <button
             className="details-order-button-delivery-check"
             data-testid={ `${role}_order_details__button-delivery-check` }

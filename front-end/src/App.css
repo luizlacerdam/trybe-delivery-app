@@ -407,7 +407,6 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
 }
 
 .details-order-order-card > div > label {
@@ -428,9 +427,9 @@ header {
   height: 17vh;
   justify-content: space-evenly;
   max-width: 800px;
-  min-width: 300px;
-  padding: 15px;
+  padding: 3px;
   text-decoration: none;
+  width: 80vw;
 }
 
 .details-order-address-and-seller {
@@ -440,6 +439,7 @@ header {
 .details-label {
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -449,14 +449,22 @@ header {
   flex-direction: column;
 }
 
+.details-order-customer-button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .details-order-button-delivery-check {
   background-color: #036b52;
   border-radius: 5px;
   color: white;
-  font-size: 30px;
-  height: 40px;
+  font-size: 20px;
+  height: 60px;
   margin-top: 20px;
-  width: 100%;
+  max-width: 500px;
+  width: 80%;
 }
 
 .details-order-button-preparing-check {
