@@ -490,6 +490,11 @@ header {
   width: 308px;
 }
 
+.admin-painel-index > span {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
 #add-new-user-form > label {
   max-height: 65px;
   width: 250px;

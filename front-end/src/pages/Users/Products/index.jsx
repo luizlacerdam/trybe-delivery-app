@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Card from './components/Card';
-import { requestData } from '../../../services/requests';
+import { requestDataWithToken } from '../../../services/requests';
 import Loading from '../../components/Loading';
 
 import { getLocalStorage } from '../../../utils/localStorageHandling';
@@ -16,7 +16,7 @@ export default function ProductPage() {
   }, [total]);
   useEffect(() => {
     const getProductsList = async () => {
-      const data = await requestData('/customer/products');
+      const data = await requestDataWithToken('/customer/products', localS.token);
       setProducts(data);
       setLoaded(true);
     };
