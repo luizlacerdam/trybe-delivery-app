@@ -19,6 +19,7 @@ export default function ProductPage() {
       const data = await requestDataWithToken('/customer/products', localS.token);
       setProducts(data);
       setLoaded(true);
+      console.log(data);
     };
     getProductsList();
   }, []);
