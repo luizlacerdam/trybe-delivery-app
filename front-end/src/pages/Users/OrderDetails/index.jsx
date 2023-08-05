@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import DetailsLabel from './components/DetailsLabel';
 import OrderItens from './components/OrderItens';
 import { requestDataWithToken } from '../../../services/requests';
@@ -16,6 +17,7 @@ export default function OrderDetails(props) {
   const [error, setError] = useState();
   const { match } = props;
   const { id } = match.params;
+  const history = useHistory();
 
   const REDIRECT_PATHS = {
     customer: '/customer/orders',
@@ -27,10 +29,9 @@ export default function OrderDetails(props) {
       const localUser = getItem('user');
       setUser(localUser);
       const { data } = await requestDataWithToken(
-        `${REDIRECT_PATHS[localUser.role]}/${id}`,
+        `${REDIRECT_PATHS[history.location.pathname.split('/')[1]]}/${id}`,
         localUser.token,
       );
-
       setDataObj(data);
       setLoaded(true);
     } catch (e) {

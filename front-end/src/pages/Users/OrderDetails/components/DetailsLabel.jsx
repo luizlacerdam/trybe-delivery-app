@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestPatchWithToken } from '../../../../services/requests';
 import { getItem } from '../../../../utils/localStorageHandling';
 
@@ -7,6 +8,8 @@ export default function DetailsLabel({
   id, seller, status, date, role, deliveryAddress, deliveryNumber }) {
   const [delivered, setDelivered] = useState(false);
   const [localStatus, setLocalStatus] = useState();
+  const history = useHistory();
+  const pageUser = history.location.pathname.split('/')[1];
   const transit = 'Em Trânsito';
   const convertDate = new Date(date);
   const options = {
@@ -28,7 +31,7 @@ export default function DetailsLabel({
   async function updateStatus(statusParam) {
     const localUser = getItem('user');
     const response = await requestPatchWithToken(
-      `${REDIRECT_PATHS[localUser.role]}/${id}`,
+      `${REDIRECT_PATHS[pageUser]}/${id}`,
       { status: statusParam },
       localUser.token,
     );
@@ -109,7 +112,7 @@ export default function DetailsLabel({
         </div>
       </div>
 
-      {role === 'customer' ? (
+      {pageUser === 'customer' ? (
         <div className="details-order-customer-button">
           <button
             className="details-order-button-delivery-check"
