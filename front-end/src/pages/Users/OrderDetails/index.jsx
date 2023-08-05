@@ -7,11 +7,13 @@ import { getItem } from '../../../utils/localStorageHandling';
 import Loading from '../../components/Loading';
 import TotalPrice from './components/TotalPrice';
 import Navbar from '../components/Navbar';
+import ErrorComponent from '../components/ErrorComponent';
 
 export default function OrderDetails(props) {
   const [dataObj, setDataObj] = useState();
   const [user, setUser] = useState();
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState();
   const { match } = props;
   const { id } = match.params;
 
@@ -21,15 +23,20 @@ export default function OrderDetails(props) {
   };
 
   async function getOrder() {
-    const localUser = getItem('user');
-    setUser(localUser);
-    const { data } = await requestDataWithToken(
-      `${REDIRECT_PATHS[localUser.role]}/${id}`,
-      localUser.token,
-    );
+    try {
+      const localUser = getItem('user');
+      setUser(localUser);
+      const { data } = await requestDataWithToken(
+        `${REDIRECT_PATHS[localUser.role]}/${id}`,
+        localUser.token,
+      );
 
-    setDataObj(data);
-    setLoaded(true);
+      setDataObj(data);
+      setLoaded(true);
+    } catch (e) {
+      console.log(e.response);
+      setError(e.response);
+    }
   }
 
   useEffect(() => {
@@ -37,60 +44,67 @@ export default function OrderDetails(props) {
   }, []);
 
   return (
-    <div className="page-index">
+    <div>
+      {error ? <ErrorComponent
+        status={ error.status }
+        statusText={ error.statusText }
+        message={ error.data.error }
+      /> : (
+        <div className="page-index">
 
-      {loaded ? (
-        <div>
-          <Navbar
-            username={ user.name }
-            role={ user.role }
-          />
-          <div className="order-details-page-index">
-            <span>
-              Detalhes do Pedido
-            </span>
-            <div className="details-label">
-              <DetailsLabel
-                id={ id }
+          {loaded ? (
+            <div>
+              <Navbar
+                username={ user.name }
                 role={ user.role }
-                seller={ dataObj.seller.name }
-                status={ dataObj.order.status }
-                date={ dataObj.order.saleDate }
-                deliveryAddress={ dataObj.order.deliveryAddress }
-                deliveryNumber={ dataObj.order.deliveryNumber }
               />
+              <div className="order-details-page-index">
+                <span>
+                  Detalhes do Pedido
+                </span>
+                <div className="details-label">
+                  <DetailsLabel
+                    id={ id }
+                    role={ user.role }
+                    seller={ dataObj.seller.name }
+                    status={ dataObj.order.status }
+                    date={ dataObj.order.saleDate }
+                    deliveryAddress={ dataObj.order.deliveryAddress }
+                    deliveryNumber={ dataObj.order.deliveryNumber }
+                  />
+                </div>
+
+                <div className="all-checkout-cards">
+                  {dataObj.order.products.map((
+                    {
+                      name, price, SaleProduct, urlImage },
+                    key,
+                  ) => (<OrderItens
+                    key={ key }
+                    index={ key }
+                    name={ name }
+                    qty={ SaleProduct.quantity }
+                    price={ price }
+                    urlImage={ urlImage }
+                  />))}
+
+                  {!loaded ? <Loading /> : (
+                    <TotalPrice
+                      totalPrice={
+                        dataObj.order.totalPrice
+                      }
+                      role={ user.role }
+                    />)}
+                </div>
+
+              </div>
             </div>
 
-            <div className="all-checkout-cards">
-              {dataObj.order.products.map((
-                {
-                  name, price, SaleProduct, urlImage },
-                key,
-              ) => (<OrderItens
-                key={ key }
-                index={ key }
-                name={ name }
-                qty={ SaleProduct.quantity }
-                price={ price }
-                urlImage={ urlImage }
-              />))}
+          ) : <Loading />}
 
-              {!loaded ? <Loading /> : (
-                <TotalPrice
-                  totalPrice={
-                    dataObj.order.totalPrice
-                  }
-                  role={ user.role }
-                />)}
-            </div>
-
-          </div>
         </div>
-
-      ) : <Loading />}
-
+      )}
     </div>
-
   );
 }
 
