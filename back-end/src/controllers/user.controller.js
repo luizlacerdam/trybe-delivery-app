@@ -34,7 +34,7 @@ const getSellers = async (req, res, next) => {
 };
 
 const userValidation = async (req, res) => 
-res.status(200).json({ message: 'Validado com sucesso' });
+res.status(200).json({ message: 'User validado com sucesso' });
 
 module.exports = { 
     create,

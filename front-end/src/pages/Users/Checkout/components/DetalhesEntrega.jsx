@@ -8,6 +8,7 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
   const [seller, setSeller] = useState();
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
+  const [error, setError] = useState('');
   const history = useHistory();
   function handleSelect(event) {
     setSeller(event.target.value);
@@ -39,8 +40,9 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
       const response = await requestPostWithToken('/customer/orders', data, token);
       setItem('cart', []);
       history.push(`/customer/orders/${response.data.id}`);
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      setError(e.response);
+      console.log(e.response);
     }
   }
 
@@ -79,6 +81,9 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
       >
         FINALIZAR PEDIDO
       </button>
+      <div>
+        {error ? <span>{error.data.error}</span> : null}
+      </div>
     </div>
   );
 }
