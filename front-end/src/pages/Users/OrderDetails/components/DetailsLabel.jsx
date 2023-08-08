@@ -106,7 +106,7 @@ export default function DetailsLabel({
           >
             {`P. Vend: ${seller}`}
           </div>
-          <div>
+          <div className="order-details-label-adress">
             {`${deliveryAddress}, nº ${deliveryNumber}.`}
           </div>
         </div>
@@ -120,6 +120,7 @@ export default function DetailsLabel({
             type="button"
             disabled={ delivered }
             onClick={ handleClickCustomer }
+            style={ delivered ? { backgroundColor: '#727272' } : {} }
           >
             MARCAR COMO ENTREGUE
           </button>
@@ -132,6 +133,7 @@ export default function DetailsLabel({
             onClick={ handleClickSeller }
             disabled={ localStatus !== 'Pendente' }
             className="details-order-button-preparing-check"
+            style={ localStatus !== 'Pendente' ? { backgroundColor: '#727272' } : {} }
           >
             PREPARAR PEDIDO
           </button>
@@ -141,6 +143,7 @@ export default function DetailsLabel({
             onClick={ handleClickSeller }
             disabled={ localStatus !== 'Preparando' }
             className="details-order-button-dispatch-check"
+            style={ localStatus !== 'Preparando' ? { backgroundColor: '#727272' } : {} }
           >
             SAIU PARA ENTREGA
           </button>

@@ -66,6 +66,7 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
         value={ address }
         onChange={ handleAddress }
         placeholder="Endereço"
+        required
       />
       <input
         data-testid="customer_checkout__input-address-number"
@@ -73,11 +74,15 @@ export default function DetalhesEntrega({ sellers, total, cart }) {
         value={ number }
         onChange={ handleNumber }
         placeholder="Número"
+        required
       />
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
         onClick={ handleClick }
+        disabled={ !seller || !address || !number }
+        style={ !seller || !address || !number ? { backgroundColor: '#727272' } : {} }
+
       >
         FINALIZAR PEDIDO
       </button>
