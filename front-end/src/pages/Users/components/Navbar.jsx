@@ -1,6 +1,9 @@
+/* eslint-disable react/jsx-max-depth */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import menuWhite from '../../../assets/img/menu_white_36dp.svg';
+import menuClose from '../../../assets/img/close_white_36dp.svg';
 
 export default function Navbar({ username, role }) {
   const [menu, setMenu] = useState(false);
@@ -17,44 +20,118 @@ export default function Navbar({ username, role }) {
   return (
     <header>
 
-      {menu ? (
-        <div>
+      <nav className="nav-bar">
+        <div
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
+          {username}
+        </div>
 
-          <div>
+        <div className="nav-list">
+          <ul>
             {role === 'administrator' ? (
-              <Link
-                data-testid="customer_products__element-navbar-link-orders"
-                to="/admin/manage"
+              <li
+                className="nav-item"
               >
-                GERENCIAR USUÁRIOS
+                <Link
+                  className="nav-link"
+                  data-testid="customer_products__element-navbar-link-orders"
+                  to="/admin/manage"
+                >
+                  GERENCIAR USUÁRIOS
+                </Link>
+              </li>
+            ) : null}
+            <li
+              className="nav-item"
+            >
+              <Link
+                className="nav-link"
+                data-testid="customer_products__element-navbar-link-products"
+                to="/customer/products"
+              >
+                PRODUTOS
               </Link>
-            ) : (
-              <div>
-                <div>
-                  <Link
-                    data-testid="customer_products__element-navbar-link-products"
-                    to="/customer/products"
-                  >
-                    PRODUTOS
-                  </Link>
-                </div>
-                <div>
-                  <Link
-                    data-testid="customer_products__element-navbar-link-orders"
-                    to={ REDIRECT_PATHS[role] }
-                  >
-                    PEDIDOS
-                  </Link>
-                </div>
-              </div>)}
+            </li>
+            <li
+              className="nav-item"
+            >
+              <Link
+                className="nav-link"
+                data-testid="customer_products__element-navbar-link-orders"
+                to={ REDIRECT_PATHS[role] }
+              >
+                PEDIDOS
+              </Link>
+            </li>
+          </ul>
+        </div>
 
-          </div>
-          <div
-            data-testid="customer_products__element-navbar-user-full-name"
+        <div
+          className="logout-button"
+        >
+          <button
+            data-testid="customer_products__element-navbar-link-logout"
+            type="button"
+            onClick={ handleClick }
           >
-            {username}
-          </div>
-          <div>
+            Sair
+          </button>
+        </div>
+
+        <div className="mobile-menu-icon">
+          <button
+            type="button"
+            onClick={ () => setMenu(!menu) }
+          >
+            <img className="icon" src={ menu ? menuClose : menuWhite } alt="" />
+
+          </button>
+
+        </div>
+      </nav>
+      {menu ? (
+        <div className="mobile-menu">
+          <ul>
+            {role === 'administrator' ? (
+              <li
+                className="nav-item"
+              >
+                <Link
+                  className="nav-link"
+                  data-testid="customer_products__element-navbar-link-orders"
+                  to="/admin/manage"
+                >
+                  GERENCIAR USUÁRIOS
+                </Link>
+              </li>
+            ) : null}
+            <li
+              className="nav-item"
+            >
+              <Link
+                className="nav-link"
+                data-testid="customer_products__element-navbar-link-products"
+                to="/customer/products"
+              >
+                PRODUTOS
+              </Link>
+            </li>
+            <li
+              className="nav-item"
+            >
+              <Link
+                className="nav-link"
+                data-testid="customer_products__element-navbar-link-orders"
+                to={ REDIRECT_PATHS[role] }
+              >
+                PEDIDOS
+              </Link>
+            </li>
+          </ul>
+          <div
+            className="logout-button"
+          >
             <button
               data-testid="customer_products__element-navbar-link-logout"
               type="button"
@@ -65,13 +142,6 @@ export default function Navbar({ username, role }) {
           </div>
         </div>
       ) : null}
-      <button
-        id="menu-button"
-        type="button"
-        onClick={ () => setMenu(!menu) }
-      >
-        Menu
-      </button>
     </header>
   );
 }
