@@ -18,6 +18,7 @@ export default function OrderDetails(props) {
   const { match } = props;
   const { id } = match.params;
   const history = useHistory();
+  const path = history.location.pathname.split('/')[1];
 
   const REDIRECT_PATHS = {
     customer: '/customer/orders',
@@ -29,7 +30,7 @@ export default function OrderDetails(props) {
       const localUser = getItem('user');
       setUser(localUser);
       const { data } = await requestDataWithToken(
-        `${REDIRECT_PATHS[history.location.pathname.split('/')[1]]}/${id}`,
+        `${REDIRECT_PATHS[path]}/${id}`,
         localUser.token,
       );
       setDataObj(data);

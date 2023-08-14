@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Navbar from '../components/Navbar';
 import OrderCard from './components/OrderCard';
 import { requestDataWithToken } from '../../../services/requests';
@@ -11,6 +12,9 @@ export default function Orders() {
   const [loaded, setLoaded] = useState(false);
   const [user, setUser] = useState();
   const [error, setError] = useState();
+  const history = useHistory();
+  const path = history.location.pathname.split('/')[1];
+
   const REDIRECT_PATHS = {
     customer: '/customer/orders',
     seller: '/seller/orders',
@@ -20,7 +24,7 @@ export default function Orders() {
     const userLocal = getItem('user');
     try {
       const { data } = await requestDataWithToken(
-        REDIRECT_PATHS[userLocal.role],
+        REDIRECT_PATHS[path],
         userLocal.token,
       );
       setOrders(data);
