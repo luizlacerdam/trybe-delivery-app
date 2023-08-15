@@ -59,7 +59,7 @@ export default function Orders() {
           <div
             id="all-orders-cards"
           >
-            {loaded ? orders.map(({
+            {loaded ? orders.reverse().map(({
               id,
               status, totalPrice,
               saleDate,

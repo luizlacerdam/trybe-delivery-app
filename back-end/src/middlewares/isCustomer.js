@@ -1,11 +1,10 @@
-const isSeller = (req, res, next) => {
+const isCustomer = (req, res, next) => {
     const { user } = req.body;
-    if (user.role !== 'administrator' && user.role !== 'seller') {
+    if (user.role !== 'customer' && user.role !== 'administrator') {
         return res.status(403).json({ message: 'Restricted access' });
     }
     next();
     };
-
 module.exports = {
-    isSeller,
+    isCustomer,
 };
