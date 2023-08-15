@@ -640,6 +640,10 @@ header {
   width: 250px;
 }
 
+nav {
+  margin-bottom: 20px;
+}
+
 .add-user-component > span {
   font-size: 30px;
   margin-bottom: 20px;

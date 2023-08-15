@@ -81,6 +81,7 @@ export default function AddUser({ setUsersLoaded }) {
             type="text"
             value={ name }
             onChange={ ({ target }) => setName(target.value) }
+            required
           />
         </label>
         <label htmlFor="new-user-email">
@@ -91,6 +92,7 @@ export default function AddUser({ setUsersLoaded }) {
             type="email"
             value={ email }
             onChange={ ({ target }) => setEmail(target.value) }
+            required
           />
         </label>
         <label htmlFor="new-user-password">
@@ -101,6 +103,7 @@ export default function AddUser({ setUsersLoaded }) {
             type="password"
             value={ password }
             onChange={ ({ target }) => setPassword(target.value) }
+            required
           />
         </label>
         <label htmlFor="new-user-select">
@@ -111,6 +114,7 @@ export default function AddUser({ setUsersLoaded }) {
             id="new-user-select"
             value={ role }
             onChange={ ({ target }) => setRole(target.value) }
+            required
           >
             <option>Escolha o tipo</option>
             <option value="seller">Vendedor</option>
@@ -124,6 +128,8 @@ export default function AddUser({ setUsersLoaded }) {
           onClick={ handleClick }
           disabled={ isDisabled }
           className="addUser-button"
+          style={ isDisabled
+            ? { backgroundColor: 'gray' } : { backgroundColor: 'green' } }
         >
           CADASTRAR
         </button>

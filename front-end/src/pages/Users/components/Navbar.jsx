@@ -53,17 +53,18 @@ export default function Navbar({ username, role }) {
                 PRODUTOS
               </Link>
             </li>
-            <li
-              className="nav-item"
-            >
-              <Link
-                className="nav-link"
-                data-testid="customer_products__element-navbar-link-orders"
-                to={ REDIRECT_PATHS[role] }
+            {role === 'administrator' ? null : (
+              <li
+                className="nav-item"
               >
-                PEDIDOS
-              </Link>
-            </li>
+                <Link
+                  className="nav-link"
+                  data-testid="customer_products__element-navbar-link-orders"
+                  to={ REDIRECT_PATHS[role] }
+                >
+                  PEDIDOS
+                </Link>
+              </li>)}
           </ul>
         </div>
 
@@ -117,17 +118,18 @@ export default function Navbar({ username, role }) {
                 PRODUTOS
               </Link>
             </li>
-            <li
-              className="nav-item"
-            >
-              <Link
-                className="nav-link"
-                data-testid="customer_products__element-navbar-link-orders"
-                to={ REDIRECT_PATHS[role] }
+            {role === 'administrator' ? null : (
+              <li
+                className="nav-item"
               >
-                PEDIDOS
-              </Link>
-            </li>
+                <Link
+                  className="nav-link"
+                  data-testid="customer_products__element-navbar-link-orders"
+                  to={ REDIRECT_PATHS[role] }
+                >
+                  PEDIDOS
+                </Link>
+              </li>)}
           </ul>
           <div
             className="logout-button"
