@@ -58,6 +58,8 @@ export default function Gerenciamento() {
                 <AddUser
                   setUsersLoaded={ setUsersLoaded }
                   usersLoaded={ usersLoaded }
+                  users={ users }
+                  setUsers={ setFilteredUsers }
                 />
                 <span>Gerenciamento de Usuários</span>
                 <UserFilter
@@ -67,7 +69,6 @@ export default function Gerenciamento() {
                   filteredUsers={ filteredUsers }
                 />
                 <div className="user-painel">
-
                   {filteredUsers.map(({ id, name, email, role }, key) => (<UserCard
                     key={ key }
                     index={ key }
@@ -77,6 +78,8 @@ export default function Gerenciamento() {
                     role={ role }
                     users={ users }
                     setUsers={ setUsers }
+                    filteredUsers={ filteredUsers }
+                    setFilteredUsers={ setFilteredUsers }
                   />))}
                 </div>
 

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { requestPostWithToken } from '../../../../services/requests';
 import { getItem } from '../../../../utils/localStorageHandling';
 
-export default function UserCard({ index, id, name, email, role, setUsers, users }) {
+export default function UserCard({
+  index,
+  id, name, email, role, setFilteredUsers, filteredUsers }) {
   async function removeUser() {
     const { token } = getItem('user');
     const response = await requestPostWithToken('./admin/manage/destroy', { id }, token);
@@ -12,8 +14,9 @@ export default function UserCard({ index, id, name, email, role, setUsers, users
 
   function handleClick() {
     removeUser();
-    const newUsers = users.filter((user) => user.id !== id);
-    setUsers(newUsers);
+
+    const newUsers = filteredUsers.filter((user) => user.id !== id);
+    setFilteredUsers(newUsers);
   }
   return (
     <div className="users-card">
@@ -63,6 +66,6 @@ UserCard.propTypes = ({
   name: PropTypes.any,
   email: PropTypes.any,
   role: PropTypes.any,
-  users: PropTypes.any,
-  setUsers: PropTypes.any,
+  filteredUsers: PropTypes.any,
+  setFilteredUsers: PropTypes.any,
 }).isRequired;

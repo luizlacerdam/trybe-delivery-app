@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { requestPostWithToken } from '../../../../services/requests';
 import { getItem } from '../../../../utils/localStorageHandling';
 
-export default function AddUser({ setUsersLoaded }) {
+export default function AddUser({ setUsersLoaded, users, setUsers }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,6 +49,7 @@ export default function AddUser({ setUsersLoaded }) {
         password,
         role,
       }, token);
+      setUsers([...users, response.user]);
       return response;
     } catch (error) {
       console.log(error);
@@ -140,4 +141,6 @@ export default function AddUser({ setUsersLoaded }) {
 
 AddUser.propTypes = ({
   setUsersLoaded: PropTypes.any,
+  users: PropTypes.any,
+  setUsers: PropTypes.any,
 }).isRequired;
