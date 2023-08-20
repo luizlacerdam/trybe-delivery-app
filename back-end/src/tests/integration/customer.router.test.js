@@ -1,9 +1,11 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const sinon = require('sinon');
+const jwt = require('jsonwebtoken');
 const app = require('../../api/app');
 const { Product } = require('../../database/models');
 const { products, newProduct } = require('../mocks/products');
+const { adminLogin } = require('../mocks/users');
 
 const { expect } = chai;
 
@@ -13,8 +15,17 @@ chai.use(chaiHttp);
     afterEach(sinon.restore);
     it('1. GET /customer/products get all products', async function () {
         sinon.stub(Product, 'findAll').resolves(products.allProducts);
+
+        sinon.stub(jwt, 'verify').returns(
+            { data: {
+            ...adminLogin.user,
+            iat: 1680969877,
+            exp: 1681574677,
+        } },
+);
+        
         const chaihttpResponse = await chai
-        .request(app).get('/customer/products');
+        .request(app).get('/customer/products').set('Authorization', adminLogin.token);
         expect(chaihttpResponse.status).to.be.equal(200);
         expect(chaihttpResponse.body).to.be.deep.equal(products);
     });
