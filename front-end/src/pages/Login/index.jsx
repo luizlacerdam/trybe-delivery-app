@@ -31,7 +31,7 @@ function Login() {
         className="error-message"
         data-testid="common_login__element-invalid-email"
       >
-        {!resError ? '' : resError.response.statusText}
+        {!resError ? '' : resError.response.data.message}
       </div>
     </div>
   );
