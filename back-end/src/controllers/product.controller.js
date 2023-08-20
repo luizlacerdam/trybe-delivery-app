@@ -31,8 +31,20 @@ const findByPk = async (req, res, next) => {
     }
 };
 
+const updateProduct = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const product = req.body;
+        const productUpdated = await ProductService.updateProduct(id, product);
+        return res.status(200).json({ productUpdated });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     create,
     findAll,
     findByPk,
+    updateProduct,
 };
