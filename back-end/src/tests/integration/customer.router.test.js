@@ -31,15 +31,30 @@ chai.use(chaiHttp);
     });
     it('2. GET /customer/products:id get product by id', async function () {
         sinon.stub(Product, 'findOne').resolves(products.allProducts[0]);
+        sinon.stub(jwt, 'verify').returns(
+            { data: {
+            ...adminLogin.user,
+            iat: 1680969877,
+            exp: 1681574677,
+        } },
+);
         const chaihttpResponse = await chai
-        .request(app).get('/customer/products/1');
+        .request(app).get('/customer/products/1').set('Authorization', adminLogin.token);
         expect(chaihttpResponse.status).to.be.equal(200);
         expect(chaihttpResponse.body.product).to.be.deep.equal(products.allProducts[0]);
     });
     it('3. POST /customer/products adds new product', async function () {
         sinon.stub(Product, 'create').resolves(products.allProducts[0]);
+        sinon.stub(jwt, 'verify').returns(
+            { data: {
+            ...adminLogin.user,
+            iat: 1680969877,
+            exp: 1681574677,
+        } },
+);
         const chaihttpResponse = await chai
-        .request(app).post('/customer/products').send({ ...newProduct });
+        .request(app).post('/customer/products').send({ ...newProduct })
+        .set('Authorization', adminLogin.token);
         expect(chaihttpResponse.status).to.be.equal(201);
         expect(chaihttpResponse.body.newProduct).to.be.deep.equal(products.allProducts[0]);
     });
