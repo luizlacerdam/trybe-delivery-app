@@ -15,11 +15,14 @@ chai.use(chaiHttp);
     it('1. GET /admin/manage get all users', async function () {
        sinon.stub(User, 'findAll').resolves(allUsers.users);
 
-        sinon.stub(jwt, 'verify').returns({
+        sinon.stub(jwt, 'verify').returns(
+            { data: {
             ...adminLogin.user,
             iat: 1680969877,
             exp: 1681574677,
-        });
+        } },
+);
+
         const chaihttpResponse = await chai
         .request(app).get('/admin/manage').set('Authorization', adminLogin.token);
         expect(chaihttpResponse.status).to.be.equal(200);
