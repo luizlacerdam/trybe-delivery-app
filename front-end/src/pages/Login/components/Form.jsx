@@ -38,6 +38,7 @@ function Form({ setResError, setUser }) {
       const response = await requestLogin('/login', { email, password });
       userCont.setUser(response);
       saveLocalStorage(response.user, response.token);
+      setUser(response.user);
       return response;
     } catch (error) {
       setResError(error);
@@ -45,8 +46,7 @@ function Form({ setResError, setUser }) {
   };
 
   const handleClick = async () => {
-    const response = await login();
-    setUser(response.user);
+    login();
   };
 
   return (
