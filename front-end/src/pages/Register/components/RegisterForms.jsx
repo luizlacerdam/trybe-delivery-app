@@ -66,8 +66,9 @@ function RegisterForms({ setResError }) {
           data-testid="common_register__input-name"
           name="name"
           id="input_name"
-          placeholder="Seu nome"
+          placeholder="Nome com 12 ou mais"
           type="text"
+          minLength="12"
           onChange={ ({ target }) => setName(target.value) }
         />
       </label>
@@ -88,8 +89,9 @@ function RegisterForms({ setResError }) {
           data-testid="common_register__input-password"
           name="password"
           id="input_password"
-          placeholder="*******"
+          placeholder="Minimo de 6 caracteres"
           type="password"
+          minLength="6"
           onChange={ ({ target }) => setPassword(target.value) }
         />
       </label>
@@ -99,6 +101,7 @@ function RegisterForms({ setResError }) {
         onClick={ handleClick }
         disabled={ isDisabled }
         id="cadastrar-button"
+        style={ isDisabled ? { backgroundColor: '#727272' } : {} }
       >
         CADASTRAR
       </button>
