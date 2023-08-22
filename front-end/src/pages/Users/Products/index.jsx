@@ -13,7 +13,9 @@ export default function ProductPage() {
   const [total, setTotal] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState();
+
   const localS = getLocalStorage('user');
+
   useEffect(() => {
   }, [total]);
   useEffect(() => {

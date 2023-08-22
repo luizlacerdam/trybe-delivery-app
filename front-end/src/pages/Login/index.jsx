@@ -26,6 +26,7 @@ function Login() {
 
   return (
     <div id="index">
+      <h1>DeliveryApp</h1>
       <Form setResError={ setResError } setUser={ setUser } />
       <div
         className="error-message"

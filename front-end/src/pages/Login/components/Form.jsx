@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { requestLogin } from '../../../services/requests';
-import userContext from '../../../context/user/userContext';
 
 function Form({ setResError, setUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
-  const userCont = useContext(userContext);
   const history = useHistory();
   useEffect(() => {
     const validateEmail = () => {
@@ -36,12 +34,12 @@ function Form({ setResError, setUser }) {
   const login = async () => {
     try {
       const response = await requestLogin('/login', { email, password });
-      userCont.setUser(response);
       saveLocalStorage(response.user, response.token);
       setUser(response.user);
       return response;
     } catch (error) {
       setResError(error);
+      console.log(error);
     }
   };
 

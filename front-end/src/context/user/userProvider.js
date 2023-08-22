@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import userContext from './userContext';
 
 export default function UserProvider({ children }) {
-  // const [token, setToken] = useState('');
-  const [user, setUser] = useState('');
+  const [contextUser, setContextUser] = useState({});
   return (
-    <userContext.Provider value={ useMemo(() => ({ user, setUser }), [user]) }>
+    <userContext.Provider
+      value={ useMemo(() => ({
+        contextUser, setContextUser }), [contextUser]) }
+    >
       {children}
     </userContext.Provider>
   );

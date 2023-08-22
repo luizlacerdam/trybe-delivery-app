@@ -1,13 +1,14 @@
 version: '3.9'
 services:
   frontend:
+    container_name: app_frontend
     build: ./front-end
     ports:
       - 3000:3000
     platform: linux/x86_64
-    working_dir: /app-frontend
+    working_dir: /front-end
     volumes:
-      - ./front-end/src:/app-frontend/src
+      - ./front-end:/front-end
     depends_on:
       backend:
         condition: service_healthy
@@ -23,11 +24,11 @@ services:
     ports:
       - 3001:3001
     platform: linux/x86_64
-    working_dir: /app-backend
+    working_dir: /back-end
     # Caso queira que o container esteja atualizado durante o desenvolvimento, sem que você precise ficar fazendo down e up dos containers, descomente as 3 linhas abaixo
     command: dev
     volumes:
-      - ./back-end/src:/app-backend/src
+      - ./back-end:/back-end
     depends_on:
       db:
         condition: service_healthy
@@ -36,7 +37,6 @@ services:
       - API_PORT=3001
       - JWT_SECRET=jwt_secret
       # Os dados abaixo se referem ao container `db`
-      # Dica: Relembre aqui da comunicação interna entre containers
       - MYSQL_USER=root
       - MYSQL_PASSWORD=password
       - MYSQL_HOST=db

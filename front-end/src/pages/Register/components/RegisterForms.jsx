@@ -44,7 +44,6 @@ function RegisterForms({ setResError }) {
         password,
         role: 'customer',
       });
-      console.log(response);
       saveLocalStorage(response.user, response.token);
       return response;
     } catch (error) {
