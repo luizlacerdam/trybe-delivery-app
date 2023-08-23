@@ -22,8 +22,12 @@ const findAll = async (req, res, next) => {
 
 const findByPk = async (req, res, next) => {
     const { id } = req.params;
+    const userId = req.body.user.id;
     try {
         const data = await SaleService.findByPk(id);
+        if (data.order.userId !== userId) {
+            return res.status(403).json({ message: 'Não autorizado.' });
+        }
         return res.status(200).json({ data });
     } catch (error) {
         next(error);
