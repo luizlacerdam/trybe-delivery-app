@@ -20,7 +20,21 @@ const findAll = async (req, res, next) => {
     }
 };
 
-const findByPk = async (req, res, next) => {
+const findByPkSeller = async (req, res, next) => {
+    const { id } = req.params;
+    const sellerId = req.body.user.id;
+    try {
+        const data = await SaleService.findByPk(id);
+        if (data.seller.id !== sellerId) {
+            return res.status(403).json({ message: 'Não autorizado.' });
+        }
+        return res.status(200).json({ data });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const findByPkCustomer = async (req, res, next) => {
     const { id } = req.params;
     const userId = req.body.user.id;
     try {
@@ -48,6 +62,7 @@ const updateStatus = async (req, res, next) => {
 module.exports = {
     create,
     findAll,
-    findByPk,
+    findByPkSeller,
+    findByPkCustomer,
     updateStatus,
 };
