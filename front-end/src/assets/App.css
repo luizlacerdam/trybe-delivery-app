@@ -300,7 +300,7 @@ header {
   margin-bottom: 20px;
   max-width: 1000px;
   padding: 3px;
-  width: 80vw;
+  width: 296px;
 }
 
 .checkout-card-props {
@@ -329,7 +329,6 @@ header {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  max-width: 1008px;
 }
 
 .total-price-checkout > span {
@@ -341,7 +340,7 @@ header {
 }
 
 .order-details-page-index > span {
-  align-self: flex-start;
+  align-self: center;
   display: flex;
   font-size: 30px;
   margin-bottom: 20px;
@@ -353,14 +352,22 @@ header {
 }
 
 .adress-detail > div > input {
-  height: 5vh;
-  max-width: 800px;
-  width: 70vw;
+  height: 40px;
+  width: 80%;
 }
 
 .adress-detail > span {
+  align-self: center;
   font-size: 20px;
   margin-left: 20px;
+}
+
+.adress-detail {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .adress-detail > div {
@@ -374,7 +381,7 @@ header {
   max-width: 1000px;
   padding-bottom: 10px;
   padding-top: 10px;
-  width: 90vw;
+  width: 326px;
 }
 
 .adress-detail > div > button {
@@ -516,12 +523,11 @@ header {
   color: inherit;
   display: flex;
   flex-direction: column;
-  height: 17vh;
+  height: 135px;
   justify-content: space-evenly;
-  max-width: 800px;
-  padding: 3px;
+  padding: 10px;
   text-decoration: none;
-  width: 80vw;
+  width: 300px;
 }
 
 .details-order-address-and-seller {
@@ -547,6 +553,7 @@ header {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+
 }
 
 .details-order-customer-button {
